@@ -61,7 +61,7 @@
 #define DR_REG_RNG_BASE 0x3ff75144
 
 //Private Key
-uint8_t private_Key[GATTS_CHAR_VAL_LEN_MAX] = "0123456789";
+uint8_t private_Key[GATTS_CHAR_VAL_LEN_MAX] = "ABCD";
 
 esp_aes_context  aes_ctx = {
 	.key_bytes = 32,
@@ -325,55 +325,121 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 	notify_conn_id = param->write.conn_id;
     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
 
+    //-------------------------------------------------------------------------------------------------------------------------- Paschalis Code
+
     //CHECK GIA EISODO STO CRYPTO_PS
-    if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED ON",6)==0) {
-    	gpio_set_level(LED_PIN,HIGH);
-    } else if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED OFF",7)==0) {
-    	gpio_set_level(LED_PIN,LOW);
-    } else if(strncmp((const char *)gl_char[0].char_val->attr_value,(const char *)private_Key,1)==0){	//---------------------------------- Paschalis Code
-    	//check if proximity conditions is fulfilled
 
-//    	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-//    	ESP_LOGI(GATTS_TAG, "char1_write_handler-RSSI: %d\n", p->scan_rst.rssi);
-//    	printf("RSSI: %d\n", p->scan_rst.rssi);
+    unsigned char input[16];
 
-
-    	//Check RSSI for proximity
-    	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-    	printf("scan-RSSI: %d [mW]\n", p->scan_rst.rssi);
-    	double rssi = 10*log10(p->scan_rst.rssi);
-    	printf("~~scan-RSSI: %f [dBm]\n", rssi);
-
-    	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
-
-    	if(abs(rssi) > 20 && abs(rssi) < 70){
-    		printf("==== Correct Password & IN RANGE ====\n");
-
-    		//Unlock the door for a few seconds
-    		gpio_set_level(RED_LED_PIN,LOW);
-    		gpio_set_level(GREEN_LED_PIN,HIGH);
-    		printf("--=={ DOOR UNLOCKED }==--\n");
-
-    		//lock again after a few seconds
-    		vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
-    		gpio_set_level(RED_LED_PIN,HIGH);
-    		gpio_set_level(GREEN_LED_PIN,LOW);
-    		printf("~~ DOOR LOCKED AGAIN ~~\n");
-    	}else{
-    		printf("==== Correct Password BUT --OUT OF RANGE-- ====\n");
-    	}
-
-
-
-
-
-
-
-    	//-------------------------------------------------------------------------------------------------------------------------------------- Paschalis Code
-    } else {
-    	char2_notify_handle(gatts_if, param->write.conn_id);
+    for(int i=0;i<(gl_char[0].char_val->attr_len);i++){
+    	input[i] = gl_char[0].char_val->attr_value[i];
     }
+    printf("Received input: %.*s\n", GATTS_CHAR_VAL_LEN_MAX, (char*)input);
 
+    printf("received input:");
+    for(int i=0;i<16;i++){
+    	printf("%02X",input[i]);
+    }
+    printf(" in hex\n");
+
+    unsigned char output[16];
+    unsigned char f_output[16];
+
+    esp_aes_encrypt(&aes_ctx,input, output);
+    printf("Final Output: %.*s\n",16,output);
+
+    printf("encrypted input:");
+        for(int i=0;i<16;i++){
+        	printf("%02X",output[i]);
+        }
+    printf(" in hex\n");
+
+    esp_aes_decrypt(&aes_ctx,output, f_output);
+    printf("Final Output: %.*s\n",16,f_output);
+    printf("final output:");
+            for(int i=0;i<16;i++){
+            	printf("%02X",f_output[i]);
+            }
+    printf(" in hex\n");
+
+
+//    if(strncmp((const char *)gl_char[0].char_val->attr_value,(const char *)output,4)==0){
+//
+//        	//Check RSSI for proximity
+//        	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
+//        	printf("scan-RSSI: %d [mW]\n", p->scan_rst.rssi);
+//        	double rssi = 10*log10(p->scan_rst.rssi);
+//        	printf("~~scan-RSSI: %f [dBm]\n", rssi);
+//
+//        	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
+//
+//        	if(abs(rssi) > 20 && abs(rssi) < 70){
+//        		printf("==== Correct Password & IN RANGE ====\n");
+//
+//        		//Unlock the door for a few seconds
+//        		gpio_set_level(RED_LED_PIN,LOW);
+//        		gpio_set_level(GREEN_LED_PIN,HIGH);
+//        		printf("--=={ DOOR UNLOCKED }==--\n");
+//
+//        		//lock again after a few seconds
+//        		vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
+//        		gpio_set_level(RED_LED_PIN,HIGH);
+//        		gpio_set_level(GREEN_LED_PIN,LOW);
+//        		printf("~~ DOOR LOCKED AGAIN ~~\n");
+//        	}else{
+//        		printf("==== Correct Password BUT --OUT OF RANGE-- ====\n");
+//        	}
+
+
+
+//    if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED ON",6)==0) {
+//    	gpio_set_level(LED_PIN,HIGH);
+//    } else if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED OFF",7)==0) {
+//    	gpio_set_level(LED_PIN,LOW);
+//    } else if(strncmp((const char *)gl_char[0].char_val->attr_value,(const char *)private_Key,1)==0){	//---------------------------------- Paschalis Code
+//    	//check if proximity conditions is fulfilled
+//
+////    	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
+////    	ESP_LOGI(GATTS_TAG, "char1_write_handler-RSSI: %d\n", p->scan_rst.rssi);
+////    	printf("RSSI: %d\n", p->scan_rst.rssi);
+//
+//
+//    	//Check RSSI for proximity
+//    	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
+//    	printf("scan-RSSI: %d [mW]\n", p->scan_rst.rssi);
+//    	double rssi = 10*log10(p->scan_rst.rssi);
+//    	printf("~~scan-RSSI: %f [dBm]\n", rssi);
+//
+//    	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
+//
+//    	if(abs(rssi) > 20 && abs(rssi) < 70){
+//    		printf("==== Correct Password & IN RANGE ====\n");
+//
+//    		//Unlock the door for a few seconds
+//    		gpio_set_level(RED_LED_PIN,LOW);
+//    		gpio_set_level(GREEN_LED_PIN,HIGH);
+//    		printf("--=={ DOOR UNLOCKED }==--\n");
+//
+//    		//lock again after a few seconds
+//    		vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
+//    		gpio_set_level(RED_LED_PIN,HIGH);
+//    		gpio_set_level(GREEN_LED_PIN,LOW);
+//    		printf("~~ DOOR LOCKED AGAIN ~~\n");
+//    	}else{
+//    		printf("==== Correct Password BUT --OUT OF RANGE-- ====\n");
+//    	}
+//
+//
+//
+//
+//
+//
+//
+//    	//-------------------------------------------------------------------------------------------------------------------------------------- Paschalis Code
+//    } else {
+//    	char2_notify_handle(gatts_if, param->write.conn_id);
+//    }
+//
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {

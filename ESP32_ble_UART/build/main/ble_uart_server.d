@@ -124,7 +124,9 @@ ble_uart_server.o: \
  C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/unistd.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/sys/unistd.h \
- C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/math.h
+ C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/math.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/rom/aes.h
 
 C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/stdio.h:
 
@@ -375,4 +377,8 @@ C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/unistd.h:
 C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/sys/unistd.h:
 
 C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/math.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/rom/aes.h:
 /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/./ble_uart_server.c:

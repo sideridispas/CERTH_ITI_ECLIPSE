@@ -28,7 +28,7 @@ extern "C" {
 #define BLE_DEVICE_NAME            "ROOM 33"
 #define BLE_MANUFACTURER_DATA_LEN  4
 
-#define GATTS_CHAR_VAL_LEN_MAX		22
+#define GATTS_CHAR_VAL_LEN_MAX		16
 
 #define BLE_PROFILE_APP_ID 0
 
