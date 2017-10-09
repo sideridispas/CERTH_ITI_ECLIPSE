@@ -1,0 +1,269 @@
+14:21:12 **** Build of configuration Default for project UART-test ****
+python C:/msys32/home/sideridis/esp/esp-idf/tools/windows/eclipse_make.py flash 
+Running make in 'C:/msys32/home/BLE-DoorLock/workspace/UART-test'
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/coap/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/esp32/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/partition_table/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/ulp/Makefile.projbuild...
+PROJECT_PATH= COMPONENT_DIRS= make -C C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject V=1 BUILD_DIR_BASE=C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader TEST_COMPONENTS= TESTS_ALL= C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/bootloader.bin
+make[1]: Entering directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
+including C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/Makefile.projbuild...
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/bootloader_support'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/bootloader_support'
+Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/bootloader_support/libbootloader_support.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/log'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/log'
+Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/log/liblog.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/spi_flash'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/spi_flash'
+Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/spi_flash/libspi_flash.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/micro-ecc'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/micro-ecc'
+Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/micro-ecc/libmicro-ecc.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/soc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/soc/component.mk COMPONENT_NAME=soc build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/soc'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/soc'
+Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/soc/libsoc.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/component.mk COMPONENT_NAME=main build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/main'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/main'
+Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/main/libmain.a'
+make[1]: Leaving directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_trace -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/component.mk COMPONENT_NAME=app_trace build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_trace'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_trace'
+Target 'component-app_trace-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_trace/libapp_trace.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_update -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/app_update/component.mk COMPONENT_NAME=app_update build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_update'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_update'
+Target 'component-app_update-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/app_update/libapp_update.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/aws_iot -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/aws_iot/component.mk COMPONENT_NAME=aws_iot build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/aws_iot'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/aws_iot'
+Target 'component-aws_iot-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/aws_iot/libaws_iot.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader_support'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader_support'
+Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader_support/libbootloader_support.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bt -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bt/component.mk COMPONENT_NAME=bt build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bt'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bt'
+Target 'component-bt-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bt/libbt.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/coap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/coap/component.mk COMPONENT_NAME=coap build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/coap'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/coap'
+Target 'component-coap-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/coap/libcoap.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/console -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/console/component.mk COMPONENT_NAME=console build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/console'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/console'
+Target 'component-console-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/console/libconsole.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/cxx -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/cxx/component.mk COMPONENT_NAME=cxx build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/cxx'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/cxx'
+Target 'component-cxx-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/cxx/libcxx.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/driver -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/driver/component.mk COMPONENT_NAME=driver build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/driver'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/driver'
+Target 'component-driver-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/driver/libdriver.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp32 -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp32/component.mk COMPONENT_NAME=esp32 build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp32'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp32'
+Target 'component-esp32-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp32/libesp32.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp_adc_cal -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/component.mk COMPONENT_NAME=esp_adc_cal build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp_adc_cal'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp_adc_cal'
+Target 'component-esp_adc_cal-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/esp_adc_cal/libesp_adc_cal.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ethernet -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/component.mk COMPONENT_NAME=ethernet build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ethernet'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ethernet'
+Target 'component-ethernet-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ethernet/libethernet.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/expat -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/expat/component.mk COMPONENT_NAME=expat build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/expat'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/expat'
+Target 'component-expat-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/expat/libexpat.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/fatfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/component.mk COMPONENT_NAME=fatfs build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/fatfs'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/fatfs'
+Target 'component-fatfs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/fatfs/libfatfs.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/freertos -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/freertos/component.mk COMPONENT_NAME=freertos build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/freertos'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/freertos'
+Target 'component-freertos-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/freertos/libfreertos.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/heap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/heap/component.mk COMPONENT_NAME=heap build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/heap'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/heap'
+Target 'component-heap-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/heap/libheap.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/jsmn -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/component.mk COMPONENT_NAME=jsmn build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/jsmn'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/jsmn'
+Target 'component-jsmn-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/jsmn/libjsmn.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/json -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/json/component.mk COMPONENT_NAME=json build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/json'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/json'
+Target 'component-json-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/json/libjson.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/libsodium -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/component.mk COMPONENT_NAME=libsodium build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/libsodium'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/libsodium'
+Target 'component-libsodium-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/libsodium/liblibsodium.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/log'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/log'
+Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/log/liblog.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/lwip -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/lwip/component.mk COMPONENT_NAME=lwip build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/lwip'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/lwip'
+Target 'component-lwip-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/lwip/liblwip.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/BLE-DoorLock/workspace/UART-test/main/component.mk COMPONENT_NAME=main build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/main'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/main'
+Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/main/libmain.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mbedtls -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/component.mk COMPONENT_NAME=mbedtls build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mbedtls'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mbedtls'
+Target 'component-mbedtls-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mbedtls/libmbedtls.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mdns -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mdns/component.mk COMPONENT_NAME=mdns build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mdns'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mdns'
+Target 'component-mdns-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/mdns/libmdns.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/micro-ecc'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/micro-ecc'
+Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/micro-ecc/libmicro-ecc.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/newlib -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/newlib/component.mk COMPONENT_NAME=newlib build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/newlib'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/newlib'
+Target 'component-newlib-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/newlib/libnewlib.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nghttp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/component.mk COMPONENT_NAME=nghttp build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nghttp'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nghttp'
+Target 'component-nghttp-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nghttp/libnghttp.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nvs_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/component.mk COMPONENT_NAME=nvs_flash build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nvs_flash'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nvs_flash'
+Target 'component-nvs_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/nvs_flash/libnvs_flash.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/openssl -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/openssl/component.mk COMPONENT_NAME=openssl build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/openssl'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/openssl'
+Target 'component-openssl-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/openssl/libopenssl.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/pthread -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/pthread/component.mk COMPONENT_NAME=pthread build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/pthread'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/pthread'
+Target 'component-pthread-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/pthread/libpthread.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/sdmmc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/component.mk COMPONENT_NAME=sdmmc build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/sdmmc'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/sdmmc'
+Target 'component-sdmmc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/sdmmc/libsdmmc.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/soc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/soc/component.mk COMPONENT_NAME=soc build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/soc'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/soc'
+Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/soc/libsoc.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spi_flash'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spi_flash'
+Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spi_flash/libspi_flash.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spiffs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/component.mk COMPONENT_NAME=spiffs build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spiffs'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spiffs'
+Target 'component-spiffs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/spiffs/libspiffs.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/tcpip_adapter -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/component.mk COMPONENT_NAME=tcpip_adapter build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/tcpip_adapter'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/tcpip_adapter'
+Target 'component-tcpip_adapter-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/tcpip_adapter/libtcpip_adapter.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ulp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ulp/component.mk COMPONENT_NAME=ulp build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ulp'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ulp'
+Target 'component-ulp-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ulp/libulp.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/vfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/vfs/component.mk COMPONENT_NAME=vfs build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/vfs'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/vfs'
+Target 'component-vfs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/vfs/libvfs.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wear_levelling -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/component.mk COMPONENT_NAME=wear_levelling build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wear_levelling'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wear_levelling'
+Target 'component-wear_levelling-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wear_levelling/libwear_levelling.a'
+Traceback (most recent call last):
+  File "C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py", line 2524, in <module>
+    _main()
+  File "C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py", line 2517, in _main
+    main()
+  File "C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py", line 2246, in main
+    esp = chip_class(args.port, initial_baud)
+  File "C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py", line 177, in __init__
+    self._port = serial.serial_for_url(port)
+  File "C:\msys32\mingw32\lib\python2.7\site-packages/serial/__init__.py", line 88, in serial_for_url
+    instance.open()
+  File "C:\msys32\mingw32\lib\python2.7\site-packages/serial/serialwin32.py", line 62, in open
+    raise SerialException("could not open port {!r}: {!r}".format(self.portstr, ctypes.WinError()))
+serial.serialutil.SerialException: could not open port 'COM3': WindowsError(5, 'Access is denied.')
+make: *** [/home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild:55: flash] Error 1
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wpa_supplicant -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/component.mk COMPONENT_NAME=wpa_supplicant build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wpa_supplicant'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wpa_supplicant'
+Target 'component-wpa_supplicant-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/wpa_supplicant/libwpa_supplicant.a'
+make -C C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/xtensa-debug-module -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/component.mk COMPONENT_NAME=xtensa-debug-module build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/xtensa-debug-module'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/xtensa-debug-module'
+Target 'component-xtensa-debug-module-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/xtensa-debug-module/libxtensa-debug-module.a'
+Flashing binaries to serial port COM3 (app at offset 0x10000)...
+python C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py --chip esp32 --port "COM3" --baud 1500000 --before "default_reset" --after "hard_reset" write_flash -z --flash_mode "dio" --flash_freq "40m" --flash_size detect 0x1000 C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/bootloader/bootloader.bin 0x10000 C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/ble_nus.bin 0x8000 C:/msys32/home/BLE-DoorLock/workspace/UART-test/build/partitions_singleapp.bin
+esptool.py v2.1
+
+14:21:22 Build Finished (took 9s.324ms)
+

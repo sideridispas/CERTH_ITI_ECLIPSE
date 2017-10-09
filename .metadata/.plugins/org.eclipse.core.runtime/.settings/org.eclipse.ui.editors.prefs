@@ -1,0 +1,17 @@
+PHPReadOccurrenceIndicationColor=72,72,72
+PHPWriteOccurrenceIndicationColor=51,90,114
+eclipse.preferences.version=1
+errorIndicationColor=179,26,64
+errorIndicationHighlighting=true
+javaScriptOccurrenceIndicationColor=72,72,72
+javaScriptOverrideIndicatorColor=72,113,109
+org.eclipse.cdt.codan.ui.annotation.error.color=241,41,86
+org.eclipse.cdt.codan.ui.annotation.warning.color=254,203,1
+org.eclipse.cdt.ui.occurrenceIndicationColor=81,81,81
+org.eclipse.cdt.ui.overrideIndicatorColor=80,124,121
+org.eclipse.cdt.ui.writeOccurrenceIndicationColor=151,103,74
+overrideIndicatorColorForPHP=72,113,109
+overviewRuler_migration=migrated_3.1
+pydevOccurrenceIndicationColor=72,72,72
+warningIndicationColor=156,114,3
+warningIndicationHighlighting=true
