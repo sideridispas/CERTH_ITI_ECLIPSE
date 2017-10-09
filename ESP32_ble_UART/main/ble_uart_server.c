@@ -45,6 +45,9 @@
 //For log10 in RSSI calculation/conversion
 #include <math.h>
 
+//For AES encryption
+#include "hwcrypto/aes.h"
+
 #define GATTS_TAG "GATTS"
 
 #define LED_PIN 13//GPIO_NUM_22
@@ -59,6 +62,11 @@
 
 //Private Key
 uint8_t private_Key[GATTS_CHAR_VAL_LEN_MAX] = "0123456789";
+
+esp_aes_context  aes_ctx = {
+	.key_bytes = 32,
+	.key = "hereHaveTheKeyThatKeepsTheSecret",
+};
 
 uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
 uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33}; //old: 0x11,0x22,0x33
