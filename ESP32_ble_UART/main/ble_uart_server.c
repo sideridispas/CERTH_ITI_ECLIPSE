@@ -60,11 +60,9 @@
 //Random number generator: register RNG_DATA_REG address
 #define DR_REG_RNG_BASE 0x3ff75144
 
-//Private Key
-uint8_t private_Key[GATTS_CHAR_VAL_LEN_MAX] = "ABCD";
 
 //Random Password used as rolling pass
-uint32_t RND_PS[4];
+uint8_t RND_PS[16];
 
 
 esp_aes_context  aes_ctx = {
@@ -334,28 +332,61 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     //CHECK GIA EISODO STO CRYPTO_PS
 
     unsigned char input[16];
-    //unsigned char decode[16];
     unsigned char f_output[16];
-    //uint32_t result;
 
     printf("received input:");
     for(int i=0;i<16;i++){
     	input[i] = gl_char[0].char_val->attr_value[i];
     	printf("%02X",input[i]);
     }
-    printf(" in hex\n");
-    printf("DECODING IN AES\n");
+    printf(" in hex\n\n");
+    printf("DECODING IN AES\n\n");
 
     esp_aes_decrypt(&aes_ctx,input, f_output);
 
-    printf("final output:");
+    printf("final output: ");
     for(int i=0;i<16;i++){
     	printf("%02X",f_output[i]);
     }
-    printf(" in hex\n");
+    printf(" in hex\n\n");
 
 
+    //password check here
+    int same = 0; //flag variable
 
+    for(int i=0;i<16;i++){
+    	if(RND_PS[i] != f_output[i]){
+    		//printf("WRONG!!\n");
+    		same = -1;
+    	}else{
+    		//printf("SAME!\n");
+    	}
+    }
+
+    //check RSSI here
+    esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
+    printf("scan-RSSI: %d\n", p->scan_rst.rssi);
+    printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
+
+    //BOTH CRITERIA MET => UNLOCK
+    if(same == 0){
+        printf("CORRECT PASSWORD & IN RANGE\n\n");
+
+        //Unlock the door for a few seconds
+        gpio_set_level(RED_LED_PIN,LOW);
+        gpio_set_level(GREEN_LED_PIN,HIGH);
+        printf("DOOR UNLOCKED\n\n");
+
+        //lock again after a few seconds
+        vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
+        gpio_set_level(RED_LED_PIN,HIGH);
+        gpio_set_level(GREEN_LED_PIN,LOW);
+        printf("~DOOR LOCKED AGAIN\n\n");
+    }else if(same == -1){
+    	printf("Wrong Encrypted Password\n");
+    }else{
+    	printf("Something went wrong here..");
+    }
 
 
 //
@@ -743,39 +774,48 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
 
         //If client is connected proceed with RND_PS write to characteristic
         if(param->connect.is_connected){
-        	printf("Client CONNECTED \n");
+        	printf("\nCLIENT CONNECTED \n\n");
+
+        	uint32_t RND_PS_temp[4];
 
         	//create the Random Password RND_PS
-        	RND_PS[0] = READ_PERI_REG(DR_REG_RNG_BASE);
-        	RND_PS[1] = READ_PERI_REG(DR_REG_RNG_BASE);
-        	RND_PS[2] = READ_PERI_REG(DR_REG_RNG_BASE);
-        	RND_PS[3] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS_temp[0] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS_temp[1] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS_temp[2] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS_temp[3] = READ_PERI_REG(DR_REG_RNG_BASE);
 
-        	for (int i=0;i<4;i++){
-        		printf("RND_PS[%d] = %02X\n",i, RND_PS[i]);
-        	}
+//        	for (int i=0;i<4;i++){
+//        		printf("RND_PS[%d] = %02X\n",i, RND_PS_temp[i]);
+//        	}
 
         	//write RND_PS to the char2
-        	printf("RND_PS: ");
         	for (int i=0;i<4;i++){
-        		gatts_demo_char2_val.attr_value[i] = ((RND_PS[0] >> 8*i) & 0x000000FF);
-        		printf("%02X",gatts_demo_char2_val.attr_value[i]);
+        		RND_PS[i] = ((RND_PS_temp[0] >> 8*i) & 0x000000FF);
+        		gatts_demo_char2_val.attr_value[i] = RND_PS[i];
         	}
         	for (int i=0;i<4;i++){
-        	        		gatts_demo_char2_val.attr_value[4+i] = ((RND_PS[1] >> 8*i) & 0x000000FF);
-        	        		printf("%02X",gatts_demo_char2_val.attr_value[4+i]);
-        	        	}
+        		RND_PS[4+i] = ((RND_PS_temp[1] >> 8*i) & 0x000000FF);
+        		gatts_demo_char2_val.attr_value[4+i] = RND_PS[4+i];
+        	}
         	for (int i=0;i<4;i++){
-        	        		gatts_demo_char2_val.attr_value[8+i] = ((RND_PS[2] >> 8*i) & 0x000000FF);
-        	        		printf("%02X",gatts_demo_char2_val.attr_value[8+i]);
-        	        	}
+        		RND_PS[8+i] = ((RND_PS_temp[2] >> 8*i) & 0x000000FF);
+        		gatts_demo_char2_val.attr_value[8+i] = RND_PS[8+i];
+        	}
         	for (int i=0;i<4;i++){
-        	        		gatts_demo_char2_val.attr_value[12+i] = ((RND_PS[3] >> 8*i) & 0x000000FF);
-        	        		printf("%02X",gatts_demo_char2_val.attr_value[12+i]);
-        	        	}
-        	printf(" in hex\n\n");
+        		RND_PS[12+i] = ((RND_PS_temp[3] >> 8*i) & 0x000000FF);
+        		gatts_demo_char2_val.attr_value[12+i] = RND_PS[12+i];
+        	}
         	gatts_demo_char2_val.attr_len = 16;
         	gl_char[1].char_val = &gatts_demo_char2_val;
+
+        	printf("RND_PS: ");
+        	for(int i=0;i<16;i++){
+        		printf("%02X",RND_PS[i]);
+        	}
+        	printf(" in hex\n\n");
+
+        	printf("WAITING FOR RESPONSE\n\n");
+
         	//printf("RND_PS: %.*s \n", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
         	//ESP_LOGI(TAG, "LOGI-After %.*s", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
 

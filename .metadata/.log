@@ -544,3 +544,6 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.cdt.core 1 0 2017-10-10 13:12:38.412
+!MESSAGE Indexed 'ESP32_ble_UART' (2 sources, 130 headers) in 2.78 sec: 9,095 declarations; 10,206 references; 0 unresolved inclusions; 3 syntax errors; 0 unresolved names (0%)
