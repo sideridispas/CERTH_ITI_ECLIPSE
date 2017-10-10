@@ -64,14 +64,7 @@
 uint8_t private_Key[GATTS_CHAR_VAL_LEN_MAX] = "ABCD";
 
 //Random Password used as rolling pass
-uint32_t RND_PS;
-
-//flag used to let us know that (0): we are waiting data (1):we have received the 1st 8Byte-packet
-int flag_input = 0;
-
-//store the first data packet of 8Bytes
-unsigned char data_pack[16];
-
+uint32_t RND_PS[4];
 
 
 esp_aes_context  aes_ctx = {
@@ -329,7 +322,7 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 		for (uint32_t pos=0;pos<param->write.len;pos++) {
 			gl_char[0].char_val->attr_value[pos]=param->write.value[pos];
 		}
-		ESP_LOGI(TAG, "[CRYPTO_PS]char1_write_handler %.*s", gl_char[0].char_val->attr_len, (char*)gl_char[0].char_val->attr_value);
+		//ESP_LOGI(TAG, "[CRYPTO_PS]char1_write_handler %.*s", gl_char[0].char_val->attr_len, (char*)gl_char[0].char_val->attr_value);
 	}
 	//ESP_LOGI(GATTS_TAG, "char1_write_handler esp_gatt_rsp_t\n");
 	notify_gatts_if = gatts_if;
@@ -340,55 +333,27 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
     //CHECK GIA EISODO STO CRYPTO_PS
 
-    //unsigned char input[8];
+    unsigned char input[16];
     //unsigned char decode[16];
     unsigned char f_output[16];
     //uint32_t result;
 
-    //I read my first data below
-    if(flag_input == 0){
-    	for(int i=0;i<8;i++){
-    		data_pack[i] = gl_char[0].char_val->attr_value[i];
-    	}
-    	//printf("Received 1st input: %.*s\n", GATTS_CHAR_VAL_LEN_MAX, (char*)first_pack);
-
-    	printf("received 1st input:");
-    	for(int i=0;i<8;i++){
-    		printf("%02X",data_pack[i]);
-    	}
-    	printf(" in hex\n");
-    	printf("WAITING FOR SECOND PACKET\n");
-    	flag_input = 1;
+    printf("received input:");
+    for(int i=0;i<16;i++){
+    	input[i] = gl_char[0].char_val->attr_value[i];
+    	printf("%02X",input[i]);
     }
-    //I read my second data and proceed to decode and check
-    else if(flag_input == 1){
-    	for(int i=0;i<8;i++){
-    		data_pack[8+i] = gl_char[0].char_val->attr_value[i];
-    	}
-    	//printf("Received 2nd input: %.*s\n", GATTS_CHAR_VAL_LEN_MAX, (char*)input);
+    printf(" in hex\n");
+    printf("DECODING IN AES\n");
 
-    	printf("received 2nd input:");
-    	for(int i=8;i<15;i++){
-    		printf("%02X",data_pack[i]);
-    	}
-    	printf(" in hex\n");
-    	printf("DECODING IN AES\n");
+    esp_aes_decrypt(&aes_ctx,input, f_output);
 
-    	printf("data_pack:");
-    	for (int i=0;i<16;i++){
-    		printf("%02X",data_pack[i]);
-    	}
-
-    	esp_aes_decrypt(&aes_ctx,data_pack, f_output);
-
-    	//printf("Final Output: %.*s\n",16,f_output);
-    	printf("final output:");
-    	for(int i=0;i<4;i++){
-    		printf("%02X",f_output[i]);
-    	}
-    	printf(" in hex\n");
-    	flag_input = 0;
+    printf("final output:");
+    for(int i=0;i<16;i++){
+    	printf("%02X",f_output[i]);
     }
+    printf(" in hex\n");
+
 
 
 
@@ -767,11 +732,11 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
     case ESP_GATTS_STOP_EVT:
         break;
     case ESP_GATTS_CONNECT_EVT:
-        ESP_LOGI(GATTS_TAG, "SERVICE_START_EVT, conn_id %d, remote %02x:%02x:%02x:%02x:%02x:%02x:, is_conn %d\n",
+        /*ESP_LOGI(GATTS_TAG, "SERVICE_START_EVT, conn_id %d, remote %02x:%02x:%02x:%02x:%02x:%02x:, is_conn %d\n",
                  param->connect.conn_id,
                  param->connect.remote_bda[0], param->connect.remote_bda[1], param->connect.remote_bda[2],
                  param->connect.remote_bda[3], param->connect.remote_bda[4], param->connect.remote_bda[5],
-                 param->connect.is_connected);
+                 param->connect.is_connected);*/
         gl_profile.conn_id = param->connect.conn_id;
 
         //============ Paschalis Code BELOWWWWWWWW ==========================================================================================
@@ -781,21 +746,37 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         	printf("Client CONNECTED \n");
 
         	//create the Random Password RND_PS
-        	uint32_t RND_PS = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS[0] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS[1] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS[2] = READ_PERI_REG(DR_REG_RNG_BASE);
+        	RND_PS[3] = READ_PERI_REG(DR_REG_RNG_BASE);
 
-        	//give the RND_PS a fixed value that can be displayed in text (eg. here: ABCD)
-        	//RND_PS = 0x41424344;
+        	for (int i=0;i<4;i++){
+        		printf("RND_PS[%d] = %02X\n",i, RND_PS[i]);
+        	}
 
         	//write RND_PS to the char2
-        	printf("RND_PS:");
+        	printf("RND_PS: ");
         	for (int i=0;i<4;i++){
-        		gatts_demo_char2_val.attr_value[i] = ((RND_PS >> 8*i) & 0x000000FF);
+        		gatts_demo_char2_val.attr_value[i] = ((RND_PS[0] >> 8*i) & 0x000000FF);
         		printf("%02X",gatts_demo_char2_val.attr_value[i]);
         	}
-        	printf(" in hex\n");
-        	gatts_demo_char2_val.attr_len = 4;
+        	for (int i=0;i<4;i++){
+        	        		gatts_demo_char2_val.attr_value[4+i] = ((RND_PS[1] >> 8*i) & 0x000000FF);
+        	        		printf("%02X",gatts_demo_char2_val.attr_value[4+i]);
+        	        	}
+        	for (int i=0;i<4;i++){
+        	        		gatts_demo_char2_val.attr_value[8+i] = ((RND_PS[2] >> 8*i) & 0x000000FF);
+        	        		printf("%02X",gatts_demo_char2_val.attr_value[8+i]);
+        	        	}
+        	for (int i=0;i<4;i++){
+        	        		gatts_demo_char2_val.attr_value[12+i] = ((RND_PS[3] >> 8*i) & 0x000000FF);
+        	        		printf("%02X",gatts_demo_char2_val.attr_value[12+i]);
+        	        	}
+        	printf(" in hex\n\n");
+        	gatts_demo_char2_val.attr_len = 16;
         	gl_char[1].char_val = &gatts_demo_char2_val;
-        	printf("RND_PS: %.*s \n", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
+        	//printf("RND_PS: %.*s \n", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
         	//ESP_LOGI(TAG, "LOGI-After %.*s", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
 
         }
