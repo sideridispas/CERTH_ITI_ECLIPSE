@@ -63,6 +63,17 @@
 //Private Key
 uint8_t private_Key[GATTS_CHAR_VAL_LEN_MAX] = "ABCD";
 
+//Random Password used as rolling pass
+uint32_t RND_PS;
+
+//flag used to let us know that (0): we are waiting data (1):we have received the 1st 8Byte-packet
+int flag_input = 0;
+
+//store the first data packet of 8Bytes
+unsigned char data_pack[16];
+
+
+
 esp_aes_context  aes_ctx = {
 	.key_bytes = 32,
 	.key = "hereHaveTheKeyThatKeepsTheSecret",
@@ -329,38 +340,76 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
     //CHECK GIA EISODO STO CRYPTO_PS
 
-    unsigned char input[16];
-
-    for(int i=0;i<(gl_char[0].char_val->attr_len);i++){
-    	input[i] = gl_char[0].char_val->attr_value[i];
-    }
-    printf("Received input: %.*s\n", GATTS_CHAR_VAL_LEN_MAX, (char*)input);
-
-    printf("received input:");
-    for(int i=0;i<16;i++){
-    	printf("%02X",input[i]);
-    }
-    printf(" in hex\n");
-
-    unsigned char output[16];
+    //unsigned char input[8];
+    //unsigned char decode[16];
     unsigned char f_output[16];
+    //uint32_t result;
 
-    esp_aes_encrypt(&aes_ctx,input, output);
-    printf("Final Output: %.*s\n",16,output);
+    //I read my first data below
+    if(flag_input == 0){
+    	for(int i=0;i<8;i++){
+    		data_pack[i] = gl_char[0].char_val->attr_value[i];
+    	}
+    	//printf("Received 1st input: %.*s\n", GATTS_CHAR_VAL_LEN_MAX, (char*)first_pack);
 
-    printf("encrypted input:");
-        for(int i=0;i<16;i++){
-        	printf("%02X",output[i]);
-        }
-    printf(" in hex\n");
+    	printf("received 1st input:");
+    	for(int i=0;i<8;i++){
+    		printf("%02X",data_pack[i]);
+    	}
+    	printf(" in hex\n");
+    	printf("WAITING FOR SECOND PACKET\n");
+    	flag_input = 1;
+    }
+    //I read my second data and proceed to decode and check
+    else if(flag_input == 1){
+    	for(int i=0;i<8;i++){
+    		data_pack[8+i] = gl_char[0].char_val->attr_value[i];
+    	}
+    	//printf("Received 2nd input: %.*s\n", GATTS_CHAR_VAL_LEN_MAX, (char*)input);
 
-    esp_aes_decrypt(&aes_ctx,output, f_output);
-    printf("Final Output: %.*s\n",16,f_output);
-    printf("final output:");
-            for(int i=0;i<16;i++){
-            	printf("%02X",f_output[i]);
-            }
-    printf(" in hex\n");
+    	printf("received 2nd input:");
+    	for(int i=8;i<15;i++){
+    		printf("%02X",data_pack[i]);
+    	}
+    	printf(" in hex\n");
+    	printf("DECODING IN AES\n");
+
+    	printf("data_pack:");
+    	for (int i=0;i<16;i++){
+    		printf("%02X",data_pack[i]);
+    	}
+
+    	esp_aes_decrypt(&aes_ctx,data_pack, f_output);
+
+    	//printf("Final Output: %.*s\n",16,f_output);
+    	printf("final output:");
+    	for(int i=0;i<4;i++){
+    		printf("%02X",f_output[i]);
+    	}
+    	printf(" in hex\n");
+    	flag_input = 0;
+    }
+
+
+
+
+//
+//    esp_aes_encrypt(&aes_ctx,input, output);
+//    printf("Final Output: %.*s\n",16,output);
+//
+//    printf("encrypted input:");
+//        for(int i=0;i<16;i++){
+//        	printf("%02X",output[i]);
+//        }
+//    printf(" in hex\n");
+//
+//    esp_aes_decrypt(&aes_ctx,output, f_output);
+//    printf("Final Output: %.*s\n",16,f_output);
+//    printf("final output:");
+//            for(int i=0;i<16;i++){
+//            	printf("%02X",f_output[i]);
+//            }
+//    printf(" in hex\n");
 
 
 //    if(strncmp((const char *)gl_char[0].char_val->attr_value,(const char *)output,4)==0){
@@ -735,12 +784,15 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         	uint32_t RND_PS = READ_PERI_REG(DR_REG_RNG_BASE);
 
         	//give the RND_PS a fixed value that can be displayed in text (eg. here: ABCD)
-        	RND_PS = 0x41424344;
+        	//RND_PS = 0x41424344;
 
         	//write RND_PS to the char2
+        	printf("RND_PS:");
         	for (int i=0;i<4;i++){
         		gatts_demo_char2_val.attr_value[i] = ((RND_PS >> 8*i) & 0x000000FF);
+        		printf("%02X",gatts_demo_char2_val.attr_value[i]);
         	}
+        	printf(" in hex\n");
         	gatts_demo_char2_val.attr_len = 4;
         	gl_char[1].char_val = &gatts_demo_char2_val;
         	printf("RND_PS: %.*s \n", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
