@@ -60,7 +60,14 @@
 //Random number generator: register RNG_DATA_REG address
 #define DR_REG_RNG_BASE 0x3ff75144
 
+//0:waiting for name, 1:waiting for RSSI scan, 2: waiting for CRYPTO_PS
+int flag_state = 0;
 
+//BT Advertiser name for the RSSI Scan
+unsigned char BT_name[16];
+
+//RSSI value of advertiser
+int rssi_val;
 
 //Random Password used as rolling pass
 uint8_t RND_PS[16];
@@ -332,67 +339,84 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
     //CHECK GIA EISODO STO CRYPTO_PS
 
-    unsigned char input[16];
-    unsigned char f_output[16];
+    if(flag_state == 0){
 
-    printf("received input:");
-    for(int i=0;i<16;i++){
-    	input[i] = gl_char[0].char_val->attr_value[i];
-    	printf("%02X",input[i]);
+    	printf("[f=0] Advertiser name: ");
+    	for(int i=0;i<16;i++){
+    		BT_name[i] = gl_char[0].char_val->attr_value[i];
+    		printf("%c",BT_name[i]);
+
+    		//the unit of the duration is second
+    		uint32_t duration = 60;
+    		esp_ble_gap_start_scanning(duration);
+		}
+    	printf("\n");
+    	printf("[PLEASE ADVERTISE NOW]\n");
+    	flag_state = 1;
+		}else if(flag_state == 1){
+			printf("[f=1] Whaaat??\n");
+		}else if(flag_state == 2){
+			printf("[f=2] RSSI val: %d\n", rssi_val);
+			unsigned char input[16];
+			unsigned char f_output[16];
+
+			printf("received input:");
+			for(int i=0;i<16;i++){
+				input[i] = gl_char[0].char_val->attr_value[i];
+				printf("%02X",input[i]);
+			}
+			printf(" in hex\n\n");
+			printf("DECODING IN AES\n\n");
+
+			esp_aes_decrypt(&aes_ctx,input, f_output);
+
+			printf("final output: ");
+			for(int i=0;i<16;i++){
+				printf("%02X",f_output[i]);
+			}
+			printf(" in hex\n\n");
+
+
+			//password check here
+			int same = 0; //flag variable
+
+			for(int i=0;i<16;i++){
+				if(RND_PS[i] != f_output[i]){
+					//printf("WRONG!!\n");
+					same = -1;
+				}else{
+					//printf("SAME!\n");
+				}
+			}
+
+			//RSSI check here
+
+
+			//BOTH CRITERIA MET => UNLOCK
+			if((same == 0)&& (abs(rssi_val) < 60) ){
+				printf("CORRECT PASSWORD & IN RANGE\n\n");
+
+				//Unlock the door for a few seconds
+				gpio_set_level(RED_LED_PIN,LOW);
+				gpio_set_level(GREEN_LED_PIN,HIGH);
+				printf("DOOR UNLOCKED\n\n");
+
+				//lock again after a few seconds
+				vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
+				gpio_set_level(RED_LED_PIN,HIGH);
+				gpio_set_level(GREEN_LED_PIN,LOW);
+				printf("~DOOR LOCKED AGAIN\n\n");
+			}else if((same == -1) && (abs(rssi_val) >60)){
+				printf("Wrong Encrypted Password & Out of range\n");
+			}else if((same == -1)){
+				printf("Wrong Encrypted Password\n");
+			}else if (abs(rssi_val) >60){
+				printf("Out of range\n");
+			}
+			printf("[PLEASE GIVE ADV NAME]\n");
+			flag_state = 0;
+
     }
-    printf(" in hex\n\n");
-    printf("DECODING IN AES\n\n");
-
-    esp_aes_decrypt(&aes_ctx,input, f_output);
-
-    printf("final output: ");
-    for(int i=0;i<16;i++){
-    	printf("%02X",f_output[i]);
-    }
-    printf(" in hex\n\n");
-
-
-    //password check here
-    int same = 0; //flag variable
-
-    for(int i=0;i<16;i++){
-    	if(RND_PS[i] != f_output[i]){
-    		//printf("WRONG!!\n");
-    		same = -1;
-    	}else{
-    		//printf("SAME!\n");
-    	}
-    }
-
-    //check RSSI here
-
-//    esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-//    printf("scan-RSSI: %d\n", p->scan_rst.rssi);
-//    printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
-
-
-
-    //BOTH CRITERIA MET => UNLOCK
-    if(same == 0){
-        printf("CORRECT PASSWORD & IN RANGE\n\n");
-
-        //Unlock the door for a few seconds
-        gpio_set_level(RED_LED_PIN,LOW);
-        gpio_set_level(GREEN_LED_PIN,HIGH);
-        printf("DOOR UNLOCKED\n\n");
-
-        //lock again after a few seconds
-        vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
-        gpio_set_level(RED_LED_PIN,HIGH);
-        gpio_set_level(GREEN_LED_PIN,LOW);
-        printf("~DOOR LOCKED AGAIN\n\n");
-    }else if(same == -1){
-    	printf("Wrong Encrypted Password\n");
-    }else{
-    	printf("Something went wrong here..");
-    }
-
-
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
@@ -729,7 +753,7 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         	}
         	printf(" in hex\n\n");
 
-        	printf("WAITING FOR RESPONSE\n\n");
+        	printf("[PLEASE GIVE ADV NAME]\n");
 
         	//printf("RND_PS: %.*s \n", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);
         	//ESP_LOGI(TAG, "LOGI-After %.*s", gl_char[1].char_val->attr_len, (char*)gl_char[1].char_val->attr_value);

@@ -45,7 +45,16 @@
 #define PROFILE_A_APP_ID 0
 #define INVALID_HANDLE   0
 
-static const char remote_device_name[] = "Random Name";
+//0:waiting for name, 1:waiting for RSSI scan, 2: waiting for CRYPTO_PS
+extern int flag_state;
+
+//BT Advertiser name for the RSSI Scan
+extern unsigned char BT_name[16];
+
+//RSSI value of advertiser
+extern int rssi_val;
+
+//static const char remote_device_name[] = "Random Name";
 static bool connect    = false;
 static bool get_server = false;
 static esp_gattc_char_elem_t *char_elem_result   = NULL;
@@ -310,11 +319,14 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
     uint8_t adv_name_len = 0;
     switch (event) {
     case ESP_GAP_BLE_SCAN_PARAM_SET_COMPLETE_EVT: {
-        //the unit of the duration is second
-        uint32_t duration = 20;
-        esp_ble_gap_start_scanning(duration);
-    	printf("Pascal: start scan\n\n");
-        break;
+
+    	//check state
+
+//    	//the unit of the duration is second
+//    	uint32_t duration = 60;
+//    	esp_ble_gap_start_scanning(duration);
+    	printf("Pascal: scan param set\n\n");
+    	break;
     }
     case ESP_GAP_BLE_SCAN_START_COMPLETE_EVT:
         //scan start complete event to indicate scan start successfully or failed
@@ -329,44 +341,34 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
         esp_ble_gap_cb_param_t *scan_result = (esp_ble_gap_cb_param_t *)param;
         switch (scan_result->scan_rst.search_evt) {
         case ESP_GAP_SEARCH_INQ_RES_EVT:
+        	//printf("SCANNING - flag:%d\n", flag_state);
+        	//esp_log_buffer_char(GATTC_TAG, BT_name, 16);
             //esp_log_buffer_hex(GATTC_TAG, scan_result->scan_rst.bda, 6);
             //ESP_LOGI(GATTC_TAG, "searched Adv Data Len %d, Scan Response Len %d", scan_result->scan_rst.adv_data_len, scan_result->scan_rst.scan_rsp_len);
             adv_name = esp_ble_resolve_adv_data(scan_result->scan_rst.ble_adv, ESP_BLE_AD_TYPE_NAME_CMPL, &adv_name_len);
             //esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
             //ESP_LOGI(GATTC_TAG, "\n");
             if (adv_name != NULL) { //old: (adv_name != NULL)
-
+            	//esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
             	int prox = scan_result->scan_rst.rssi;
+            	if(flag_state == 1){
+            		if (strcmp((const char *)adv_name, (const char *)BT_name) == 0){
+						printf("Name match!\n");
+						//esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
+						ESP_LOGI(GATTC_TAG, "RSSI: %d ", prox);
+						rssi_val = prox;
+						flag_state = 2;
 
-            	if (strcmp((const char *)adv_name, (const char *)"XT1068") == 0){
-            		//printf("HAMOSSSSSSSS\n");
-            		//esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
-            		ESP_LOGI(GATTC_TAG, "NOT IN RANGE - RSSI: %d ", prox);
+						printf("[PLEASE GIVE ENCRYPTED PS]\n");
+						esp_ble_gap_stop_scanning();
 
-            		if(abs(prox) <=60){
-            		            		//esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
-            		            		ESP_LOGI(GATTC_TAG, "=>IN RANGE - RSSI: %d ", prox);
-            		            		esp_log_buffer_hex(GATTC_TAG, param->scan_rst.bda, sizeof(esp_bd_addr_t));
-            		}
+	//            		if(abs(prox) <=60){
+	//            		     //esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
+	//            		     ESP_LOGI(GATTC_TAG, "=>IN RANGE - RSSI: %d ", prox);
+	//            		     esp_log_buffer_hex(GATTC_TAG, param->scan_rst.bda, sizeof(esp_bd_addr_t));
+	//            		}
+					}
             	}
-
-
-
-
-
-
-//            		if (connect == false) {
-//            			connect = true;
-//            		    ESP_LOGI(GATTC_TAG, "connect to the remote device.");
-//            		    esp_ble_gap_stop_scanning();
-//            		    //esp_ble_gattc_open(gl_profile_tab[PROFILE_A_APP_ID].gattc_if, scan_result->scan_rst.bda, true);
-//
-//            		    ESP_LOGI(GATTC_TAG, "========USER RIGHTS CHECK PASS (ROOM ID)");
-//            		    ESP_LOGI(GATTC_TAG, "============UNLOCK DOOR");
-//            		}
-//
-//
-//            	}
 
             }
             break;
