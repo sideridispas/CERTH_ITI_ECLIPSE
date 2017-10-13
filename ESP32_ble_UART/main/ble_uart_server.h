@@ -46,6 +46,9 @@ void descr2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 void descr2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param);
 
 void lock_arm();
+void gatt_server_main();
+void gatt_client_main();
+
 
 #ifdef __cplusplus
 }

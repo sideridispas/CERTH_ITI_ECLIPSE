@@ -94,7 +94,7 @@
 						<entry kind="includePath" name="/${ProjName}/build/include">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
-						<entry kind="includePath" name="/${ProjName}/build/main">
+						<entry kind="includePath" name="/${ProjName}/">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
 						<entry kind="macro" name="ESP_PLATFORM" value=""/>
@@ -104,6 +104,105 @@
 						<entry kind="macro" name="WITH_POSIX" value=""/>
 					</resource>
 					<resource project-relative-path="main/ble_uart_server.c">
+						<entry kind="includePath" name="/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/app_update/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/sys/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/device/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/gki/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/external/sbc/decoder/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/core/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/blufi/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gatt/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gap/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/a2dp/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/incincluding"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/btif/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btm/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btu/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gap/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gatt/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/hcic/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/l2cap/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/sdp/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/smp/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avct/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avrc/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avdt/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/a2dp/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include/coap"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include/coap"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/console"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/cxx/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/driver/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/expat/port/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/expat/include/expat"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/src"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/freertos/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/heap/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/json/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/json/port/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/port_include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/log/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/port"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/posix"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/lwip/apps/ping"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/port/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/mdns/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/micro-ecc"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/newlib/platform_include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/port/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/nghttp2/lib/includes"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/openssl/include"/>
+						<entry kind="includePath" name="/home/sideridis/esp/esp-idf/components/pthread/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/soc/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/ulp/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/vfs/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/port/include"/>
+						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/include"/>
+						<entry kind="includePath" name="/${ProjName}/build/include">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="includePath" name="/${ProjName}/">
+							<flag value="VALUE_WORKSPACE_PATH"/>
+						</entry>
+						<entry kind="macro" name="ESP_PLATFORM" value=""/>
+						<entry kind="macro" name="HAVE_CONFIG_H" value=""/>
+						<entry kind="macro" name="IDF_VER" value="&quot;v3.0-dev-774-ga3a4a205&quot;"/>
+						<entry kind="macro" name="MBEDTLS_CONFIG_FILE" value="&quot;mbedtls/esp_config.h&quot;"/>
+						<entry kind="macro" name="WITH_POSIX" value=""/>
+					</resource>
+					<resource project-relative-path="main/ble_client.c">
 						<entry kind="includePath" name="/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/include"/>
 						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/include"/>
 						<entry kind="includePath" name="C:/msys32/home/sideridis/esp/esp-idf/components/app_update/include"/>
@@ -193,7 +292,7 @@
 						<entry kind="includePath" name="/${ProjName}/build/include">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
-						<entry kind="includePath" name="/${ProjName}/build/main">
+						<entry kind="includePath" name="/${ProjName}/">
 							<flag value="VALUE_WORKSPACE_PATH"/>
 						</entry>
 						<entry kind="macro" name="ESP_PLATFORM" value=""/>

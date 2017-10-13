@@ -42,11 +42,11 @@
 //for printing char values (uint8_t)
 #include <unistd.h>
 
-//For log10 in RSSI calculation/conversion
-#include <math.h>
-
 //For AES encryption
 #include "hwcrypto/aes.h"
+
+//Experiment for rssi acquisition
+#include "ble_client.c"
 
 #define GATTS_TAG "GATTS"
 
@@ -59,6 +59,7 @@
 
 //Random number generator: register RNG_DATA_REG address
 #define DR_REG_RNG_BASE 0x3ff75144
+
 
 
 //Random Password used as rolling pass
@@ -364,9 +365,12 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     }
 
     //check RSSI here
-    esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-    printf("scan-RSSI: %d\n", p->scan_rst.rssi);
-    printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
+
+//    esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
+//    printf("scan-RSSI: %d\n", p->scan_rst.rssi);
+//    printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
+
+
 
     //BOTH CRITERIA MET => UNLOCK
     if(same == 0){
@@ -389,102 +393,6 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     }
 
 
-//
-//    esp_aes_encrypt(&aes_ctx,input, output);
-//    printf("Final Output: %.*s\n",16,output);
-//
-//    printf("encrypted input:");
-//        for(int i=0;i<16;i++){
-//        	printf("%02X",output[i]);
-//        }
-//    printf(" in hex\n");
-//
-//    esp_aes_decrypt(&aes_ctx,output, f_output);
-//    printf("Final Output: %.*s\n",16,f_output);
-//    printf("final output:");
-//            for(int i=0;i<16;i++){
-//            	printf("%02X",f_output[i]);
-//            }
-//    printf(" in hex\n");
-
-
-//    if(strncmp((const char *)gl_char[0].char_val->attr_value,(const char *)output,4)==0){
-//
-//        	//Check RSSI for proximity
-//        	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-//        	printf("scan-RSSI: %d [mW]\n", p->scan_rst.rssi);
-//        	double rssi = 10*log10(p->scan_rst.rssi);
-//        	printf("~~scan-RSSI: %f [dBm]\n", rssi);
-//
-//        	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
-//
-//        	if(abs(rssi) > 20 && abs(rssi) < 70){
-//        		printf("==== Correct Password & IN RANGE ====\n");
-//
-//        		//Unlock the door for a few seconds
-//        		gpio_set_level(RED_LED_PIN,LOW);
-//        		gpio_set_level(GREEN_LED_PIN,HIGH);
-//        		printf("--=={ DOOR UNLOCKED }==--\n");
-//
-//        		//lock again after a few seconds
-//        		vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
-//        		gpio_set_level(RED_LED_PIN,HIGH);
-//        		gpio_set_level(GREEN_LED_PIN,LOW);
-//        		printf("~~ DOOR LOCKED AGAIN ~~\n");
-//        	}else{
-//        		printf("==== Correct Password BUT --OUT OF RANGE-- ====\n");
-//        	}
-
-
-
-//    if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED ON",6)==0) {
-//    	gpio_set_level(LED_PIN,HIGH);
-//    } else if (strncmp((const char *)gl_char[0].char_val->attr_value,"LED OFF",7)==0) {
-//    	gpio_set_level(LED_PIN,LOW);
-//    } else if(strncmp((const char *)gl_char[0].char_val->attr_value,(const char *)private_Key,1)==0){	//---------------------------------- Paschalis Code
-//    	//check if proximity conditions is fulfilled
-//
-////    	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-////    	ESP_LOGI(GATTS_TAG, "char1_write_handler-RSSI: %d\n", p->scan_rst.rssi);
-////    	printf("RSSI: %d\n", p->scan_rst.rssi);
-//
-//
-//    	//Check RSSI for proximity
-//    	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-//    	printf("scan-RSSI: %d [mW]\n", p->scan_rst.rssi);
-//    	double rssi = 10*log10(p->scan_rst.rssi);
-//    	printf("~~scan-RSSI: %f [dBm]\n", rssi);
-//
-//    	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
-//
-//    	if(abs(rssi) > 20 && abs(rssi) < 70){
-//    		printf("==== Correct Password & IN RANGE ====\n");
-//
-//    		//Unlock the door for a few seconds
-//    		gpio_set_level(RED_LED_PIN,LOW);
-//    		gpio_set_level(GREEN_LED_PIN,HIGH);
-//    		printf("--=={ DOOR UNLOCKED }==--\n");
-//
-//    		//lock again after a few seconds
-//    		vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
-//    		gpio_set_level(RED_LED_PIN,HIGH);
-//    		gpio_set_level(GREEN_LED_PIN,LOW);
-//    		printf("~~ DOOR LOCKED AGAIN ~~\n");
-//    	}else{
-//    		printf("==== Correct Password BUT --OUT OF RANGE-- ====\n");
-//    	}
-//
-//
-//
-//
-//
-//
-//
-//    	//-------------------------------------------------------------------------------------------------------------------------------------- Paschalis Code
-//    } else {
-//    	char2_notify_handle(gatts_if, param->write.conn_id);
-//    }
-//
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
@@ -774,7 +682,14 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
 
         //If client is connected proceed with RND_PS write to characteristic
         if(param->connect.is_connected){
-        	printf("\nCLIENT CONNECTED \n\n");
+        	printf("\nCLIENT CONNECTED\n\n");
+
+
+        	esp_log_buffer_hex(GATTS_TAG, param->connect.remote_bda, sizeof(esp_bd_addr_t));
+
+        	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
+        	printf("scan-RSSI: %d\n", p->scan_rst.rssi);
+        	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
 
         	uint32_t RND_PS_temp[4];
 
@@ -825,6 +740,7 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
 
         break;
     case ESP_GATTS_DISCONNECT_EVT:
+    	printf("--Client Disconnected--\n\n");
         esp_ble_gap_start_advertising(&ble_adv_params);
         break;
     case ESP_GATTS_OPEN_EVT:
@@ -891,4 +807,40 @@ void lock_arm(){
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
 	printf("LOCK ARMED\n");
+}
+
+
+void gatt_server_main(){
+	esp_ble_gap_register_callback(gap_event_handler);
+	esp_ble_gatts_register_callback(gatts_event_handler);
+	esp_ble_gatts_app_register(BLE_PROFILE_APP_ID);
+}
+
+
+void gatt_client_main(){
+    esp_err_t ret;
+
+    //register the  callback function to the gap module
+    ret = esp_ble_gap_register_callback(esp_gap_cb);
+    if (ret){
+        ESP_LOGE(GATTC_TAG, "%s gap register failed, error code = %x\n", __func__, ret);
+        return;
+    }
+
+    //register the callback function to the gattc module
+    ret = esp_ble_gattc_register_callback(esp_gattc_cb);
+    if(ret){
+        ESP_LOGE(GATTC_TAG, "%s gattc register failed, error code = %x\n", __func__, ret);
+        return;
+    }
+
+    ret = esp_ble_gattc_app_register(PROFILE_A_APP_ID);
+    if (ret){
+        ESP_LOGE(GATTC_TAG, "%s gattc app register failed, error code = %x\n", __func__, ret);
+    }
+    esp_err_t local_mtu_ret = esp_ble_gatt_set_local_mtu(500);
+    if (local_mtu_ret){
+        ESP_LOGE(GATTC_TAG, "set local  MTU failed, error code = %x", local_mtu_ret);
+    }
+
 }

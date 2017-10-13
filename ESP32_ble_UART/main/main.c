@@ -37,6 +37,10 @@
 
 #include "driver/gpio.h"
 
+#include "ble_client.c"
+
+
+
 #define GATTS_TAG "MAIN"
 
 
@@ -46,7 +50,7 @@ void app_main() {
     printf("PASCAL: MAIN START \n");
 	lock_arm();
 
-	/**************************************** BLE SETUP: START ****************************************/
+
 	//Helping var for debugging on error outputs
     esp_err_t ret;
 
@@ -54,6 +58,8 @@ void app_main() {
 
     //Paschalis addition
     ret = nvs_flash_init();
+
+
         if (ret) {
             ESP_LOGE(GATTS_TAG, "%s initialize nvs flash failed\n", __func__);
             return;
@@ -81,10 +87,17 @@ void app_main() {
         return;
     }
 
+
+    gatt_server_main();
+
+    gatt_client_main();
+
+
+
+    /*
     esp_ble_gatts_register_callback(gatts_event_handler);
     esp_ble_gap_register_callback(gap_event_handler);
-    esp_ble_gatts_app_register(BLE_PROFILE_APP_ID);
-    /**************************************** BLE SETUP: END ****************************************/
+    esp_ble_gatts_app_register(BLE_PROFILE_APP_ID);*/
 
 
 

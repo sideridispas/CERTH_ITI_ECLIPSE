@@ -110,7 +110,27 @@ main.o: C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/main.c \
  C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_defs.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_bt_defs.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_bt_main.h \
- C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.h
+ C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.h \
+ C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c \
+ C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include/nvs.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/device/include/controller.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/bdaddr.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/hash_map.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/device_features.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include/hci_layer.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/allocator.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/osi.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/future.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/semaphore.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/freertos/include/freertos/semphr.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/freertos/include/freertos/queue.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include/hci_packet_factory.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/event_mask.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include/hci_packet_parser.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/version.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gattc_api.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_defs.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_common_api.h
 
 C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/stdio.h:
 
@@ -335,4 +355,44 @@ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_bt_
 C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_bt_main.h:
 
 C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.h:
+
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include/nvs.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/device/include/controller.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/bdaddr.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/hash_map.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/device_features.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include/hci_layer.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/allocator.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/osi.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/future.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include/semaphore.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/freertos/include/freertos/semphr.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/freertos/include/freertos/queue.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include/hci_packet_factory.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/event_mask.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include/hci_packet_parser.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include/version.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gattc_api.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_defs.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_common_api.h:
 /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/./main.c:

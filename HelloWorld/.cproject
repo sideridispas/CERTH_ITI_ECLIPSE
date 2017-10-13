@@ -27,6 +27,8 @@
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\nvs_flash\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\driver\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\log\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\device\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\api\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.320082215" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -39,6 +41,8 @@
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\nvs_flash\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\driver\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\log\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\device\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\api\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1361511223" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
 							</tool>
@@ -50,6 +54,8 @@
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\nvs_flash\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\driver\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\log\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\device\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\api\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1495702461" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>

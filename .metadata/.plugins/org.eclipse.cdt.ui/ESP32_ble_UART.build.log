@@ -1,4 +1,4 @@
-16:30:33 **** Build of configuration Default for project ESP32_ble_UART ****
+16:56:15 **** Build of configuration Default for project ESP32_ble_UART ****
 python C:/msys32/home/sideridis/esp/esp-idf/tools/windows/eclipse_make.py flash app -j8 
 Running make in 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART'
 including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/Makefile.projbuild...
@@ -17,226 +17,239 @@ make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/aws_iot -f C:
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bt/component.mk COMPONENT_NAME=bt build
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/coap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/coap/component.mk COMPONENT_NAME=coap build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/console -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/console/component.mk COMPONENT_NAME=console build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/aws_iot'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/aws_iot'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_update'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_update'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/console -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/console/component.mk COMPONENT_NAME=console build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_trace'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_trace'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_update'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_update'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/cxx/component.mk COMPONENT_NAME=cxx build
-make[1]: Entering directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/driver -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/driver/component.mk COMPONENT_NAME=driver build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp32 -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp32/component.mk COMPONENT_NAME=esp32 build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader_support'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader_support'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/driver -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/driver/component.mk COMPONENT_NAME=driver build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp32 -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp32/component.mk COMPONENT_NAME=esp32 build
+make[1]: Entering directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/component.mk COMPONENT_NAME=esp_adc_cal build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/console'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/console'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/component.mk COMPONENT_NAME=ethernet build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/coap'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/coap'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/component.mk COMPONENT_NAME=ethernet build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal'
 make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/expat/component.mk COMPONENT_NAME=expat build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/driver'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/driver'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp32'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp32'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet'
-make[1]: Nothing to be done for 'build'.
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt'
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/expat/component.mk COMPONENT_NAME=expat build
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/fatfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/component.mk COMPONENT_NAME=fatfs build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/freertos/component.mk COMPONENT_NAME=freertos build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/heap/component.mk COMPONENT_NAME=heap build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/freertos/component.mk COMPONENT_NAME=freertos build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/fatfs'
 make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/fatfs'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap'
 make[1]: Nothing to be done for 'build'.
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/component.mk COMPONENT_NAME=jsmn build
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/fatfs'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/heap/component.mk COMPONENT_NAME=heap build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos'
 make[1]: Nothing to be done for 'build'.
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/component.mk COMPONENT_NAME=jsmn build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap'
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/json -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/json/component.mk COMPONENT_NAME=json build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/libsodium -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/component.mk COMPONENT_NAME=libsodium build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/json'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/json'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/lwip -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/lwip/component.mk COMPONENT_NAME=lwip build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/component.mk COMPONENT_NAME=main build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/component.mk COMPONENT_NAME=mbedtls build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mdns/component.mk COMPONENT_NAME=mdns build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log'
 make[1]: Nothing to be done for 'build'.
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns'
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/newlib/component.mk COMPONENT_NAME=newlib build
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/lwip'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/component.mk COMPONENT_NAME=main build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/libsodium'
 make[1]: Nothing to be done for 'build'.
-make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/libsodium'
-including C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild...
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/component.mk COMPONENT_NAME=mbedtls build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mdns/component.mk COMPONENT_NAME=mdns build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/newlib/component.mk COMPONENT_NAME=newlib build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/lwip'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/lwip'
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main'
-including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/Makefile.projbuild...
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns'
+make[1]: Nothing to be done for 'build'.
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns'
+xtensa-esp32-elf-gcc -std=gnu99 -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='"mbedtls/esp_config.h"' -DHAVE_CONFIG_H -DESP_PLATFORM -D IDF_VER=\"v3.0-dev-774-ga3a4a205\" -MMD -MP   -I /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_update/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/sys/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include -I /home/sideridis/esp/esp-imake[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nghttp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/component.mk COMPONENT_NAME=nghttp build
-C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c: In function 'gatts_profile_event_handler':
-C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c:667:12: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
-  esp_err_t ret;
-            ^
-including /home/sideridis/esp/esp-idf/components/bootloader/subproject/main/Makefile.projbuild...xtensa-esp32-elf-gcc -std=gnu99 -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='"mbedtls/esp_config.h"' -DHAVE_CONFIG_H -DESP_PLATFORM -D IDF_VER=\"v3.0-dev-774-ga3a4a205\" -MMD -MP   -I /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_update/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/sys/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/device/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/gki/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/external/sbc/decoder/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/core/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/blufi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/a2dp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/incmake -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/component.mk COMPONENT_NAME=nvs_flash build
+including /home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild...make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib'
+make[1]: Nothing to be done for 'build'.
+df/components/bt/bluedroid/device/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/gki/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/external/sbc/decoder/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/core/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/blufi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/a2dp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/incmake -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/component.mk COMPONENT_NAME=nvs_flash build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nghttp'
 make[1]: Nothing to be done for 'build'.
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib'
+lude -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btif/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btm/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btu/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/hcic/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/l2cap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/sdp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/smp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avct/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avrc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avdt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/a2dp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/console/ -I /home/sideridis/esp/esp-idf/components/cxx/include -I C:/msys32/home/sideridis/esp/esp-idf/components/driver/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/include/expat -I C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/src -I C:/msys32/home/sideridis/esp/esp-idf/components/freertos/include -I C:/msys32/home/sideridis/esp/esp-idf/components/heap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/include/ -I C:/msys32/home/sideridis/esp/esp-idf/components/json/include -I C:/msys32/home/sideridis/esp/esp-idf/components/json/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/port_include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include -I C:/msys32/home/sideridis/esp/esp-idf/components/log/include -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/port -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/posix -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/apps/ping -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mdns/include -I C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/micro-ecc -I C:/msys32/home/sideridis/esp/esp-idf/components/newlib/platform_include -I /home/sideridis/esp/esp-idf/compomake[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash'
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nghttp'
-lude -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btif/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btm/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btu/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/hcic/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/l2cap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/sdp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/smp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avct/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avrc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avdt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/a2dp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/console/ -I /home/sideridis/esp/esp-idf/components/cxx/include -I C:/msys32/home/sideridis/esp/esp-idf/components/driver/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/include/expat -I C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/src -I /home/sideridis/esp/esp-idf/components/freertos/imake -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/openssl -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/openssl/component.mk COMPONENT_NAME=openssl build
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls'
 
-cygpath: error converting "/wpa_supplicant/../esp32/include" - No such file or directory
-nclude -I C:/msys32/home/sideridis/esp/esp-idf/components/heap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/include/ -I C:/msys32/home/sideridis/esp/esp-idf/components/json/include -I C:/msys32/home/sideridis/esp/esp-idf/components/json/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/port_include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include -I C:/msys32/home/sideridis/esp/esp-idf/components/log/include -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/port -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/posix -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/apps/ping -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mdns/include -I C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/micro-ecc -I C:/msys32/home/sideridis/esp/esp-idf/components/newlib/platform_include -I /home/sideridis/esp/esp-idf/compomake[1]: Nothing to be done for 'build'.
-nents/newlib/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/nghttp2/lib/includes -I C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/openssl/include -I /home/sideridis/esp/esp-idf/components/pthread/include -I C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ulp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/vfs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/port/include -I /home/sideridis/esp/esp-idf/compomake[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/pthread/component.mk COMPONENT_NAME=pthread build
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c: In function 'gatts_profile_event_handler':
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c:574:12: warning: variable 'ret' set but not used [-Wunused-but-set-variable]
+  esp_err_t ret;
+            ^
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/openssl -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/openssl/component.mk COMPONENT_NAME=openssl build
+nents/newlib/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/nghttp2/lib/includes -I C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/openssl/include -I /home/sideridis/esp/esp-idf/components/pthread/include -I C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ulp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/vfs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/include -I C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/include  -I. -c C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c -o ble_uart_server.o
+including /home/sideridis/esp/esp-idf/components/bootloader_support/Makefile.projbuild...make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/pthread/component.mk COMPONENT_NAME=pthread build
+
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/openssl'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
-nents/wpa_supplicant/../esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/include -I C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/include  -I. -c C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c -o ble_uart_server.o
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/openssl'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/sdmmc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/component.mk COMPONENT_NAME=sdmmc build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/Makefile.projbuild...
+xtensa-esp32-elf-gcc -std=gnu99 -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='"mbedtls/esp_config.h"' -DHAVE_CONFIG_H -DESP_PLATFORM -D IDF_VER=\"v3.0-dev-774-ga3a4a205\" -MMD -MP   -I /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_update/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/sys/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/device/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/gki/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/external/sbc/decoder/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/core/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/blufi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/a2dp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/incmake -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/sdmmc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/component.mk COMPONENT_NAME=sdmmc build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
+lude -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btif/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btm/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btu/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/hcic/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/l2cap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/sdp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/smp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avct/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avrc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avdt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/a2dp/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/includmake[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread'
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/soc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/soc/component.mk COMPONENT_NAME=soc build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread'
-make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log'
-make[2]: Nothing to be done for 'build'.
-make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/sdmmc'
 make[1]: Nothing to be done for 'build'.
+e -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/console/ -I /home/sideridis/esp/esp-idf/components/cxx/include -I C:/msys32/home/sideridis/esp/esp-idf/components/driver/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/include/expat -I C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/src -I /home/sideridis/esp/esp-idf/components/freertos/imake[1]: Nothing to be done for 'build'.
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support'
+nclude -I C:/msys32/home/sideridis/esp/esp-idf/components/heap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/include/ -I C:/msys32/home/sideridis/esp/esp-idf/components/json/include -I C:/msys32/home/sideridis/esp/esp-idf/components/json/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/port_include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include -I C:/msys32/home/sideridis/esp/esp-idf/components/log/include -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/port -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/posix -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/apps/ping -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mdns/include -I C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/micro-ecc -I C:/msys32/home/sideridis/esp/esp-idf/components/newlib/platform_include -I /home/sideridis/esp/esp-idf/compomake[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread'
+make[2]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/sdmmc'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/soc'
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support'
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log'
+make[2]: Nothing to be done for 'build'.
+nents/newlib/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/nghttp2/lib/includes -I C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/openssl/include -I /home/sideridis/esp/esp-idf/components/pthread/include -I C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ulp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/vfs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/port/include -I /home/sideridis/esp/esp-idf/compomake[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/soc'
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
+cygpath: error converting "/wpa_supplicant/../esp32/include" - No such file or directory
+In file included from C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/main.c:40:0:
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c:306:13: warning: 'esp_gap_cb' defined but not used [-Wunused-function]
+ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
+             ^
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c:409:13: warning: 'esp_gattc_cb' defined but not used [-Wunused-function]
+ static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param)
+             ^
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/component.mk COMPONENT_NAME=spiffs build
+nents/wpa_supplicant/../esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/include -I C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/include  -I. -c C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/main.c -o main.o
+make[1]: Nothing to be done for 'build'.
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/soc'
-make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/tcpip_adapter -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/component.mk COMPONENT_NAME=tcpip_adapter build
+echo "C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c" >> ble_uart_server.d
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/component.mk COMPONENT_NAME=spiffs build
 make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/spi_flash'
 make[2]: Nothing to be done for 'build'.
 make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/spi_flash'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs'
 make[1]: Nothing to be done for 'build'.
-make[2]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash'
-make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support'
-echo "C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_uart_server.c" >> ble_uart_server.d
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ulp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ulp/component.mk COMPONENT_NAME=ulp build
 make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/soc/component.mk COMPONENT_NAME=soc build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/tcpip_adapter -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/component.mk COMPONENT_NAME=tcpip_adapter build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/vfs/component.mk COMPONENT_NAME=vfs build
 make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/micro-ecc'
 make[2]: Nothing to be done for 'build'.
 make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/micro-ecc'
-rm -f libmain.a
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/component.mk COMPONENT_NAME=main build
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ulp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ulp/component.mk COMPONENT_NAME=ulp build
-make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/tcpip_adapter'
-xtensa-esp32-elf-ar cru libmain.a ble_uart_server.o main.o
-Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support/libbootloader_support.a'
-make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main'
-Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log/liblog.a'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs'
-make[2]: Nothing to be done for 'build'.
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/tcpip_adapter'
-make[2]: Nothing to be done for 'build'.
-make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/vfs/component.mk COMPONENT_NAME=vfs build
-make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc'
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/component.mk COMPONENT_NAME=main build
+make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/component.mk COMPONENT_NAME=wear_levelling build
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ulp'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ulp'
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/component.mk COMPONENT_NAME=wear_levelling build
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wpa_supplicant -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/component.mk COMPONENT_NAME=wpa_supplicant build
-Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/spi_flash/libspi_flash.a'
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main'
-Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/micro-ecc/libmicro-ecc.a'
-Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main/libmain.a'
-make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs'
-make[1]: Nothing to be done for 'build'.
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs'
-Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc/libsoc.a'
+xtensa-esp32-elf-gcc -std=gnu99 -Og -ggdb -ffunction-sections -fdata-sections -fstrict-volatile-bitfields -mlongcalls -nostdlib -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-but-set-variable -Wno-error=unused-variable -Wno-error=deprecated-declarations -Wextra -Wno-unused-parameter -Wno-sign-compare -Wno-old-style-declaration -DWITH_POSIX -DMBEDTLS_CONFIG_FILE='"mbedtls/esp_config.h"' -DHAVE_CONFIG_H -DESP_PLATFORM -D IDF_VER=\"v3.0-dev-774-ga3a4a205\" -MMD -MP   -I /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/include -I C:/msys32/home/sideridis/esp/esp-idf/components/app_update/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/bta/sys/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btcore/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/device/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/gki/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/hci/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/osi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/external/sbc/decoder/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/core/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/blufi/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/esp/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/a2dp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/profile/std/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/btc/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/btif/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btm/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/btu/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/gatt/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/hcic/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/l2cap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/sdp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/smp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avct/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avrc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/avdt/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/a2dp/include -I /home/sideridis/esp/esp-idf/components/bt/bluedroid/stack/includmake -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wpa_supplicant -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/component.mk COMPONENT_NAME=wpa_supplicant build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling'
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs'
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c:306:13: warning: 'esp_gap_cb' defined but not used [-Wunused-function]
+ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param)
+             ^
+C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c:409:13: warning: 'esp_gattc_cb' defined but not used [-Wunused-function]
+ static void esp_gattc_cb(esp_gattc_cb_event_t event, esp_gatt_if_t gattc_if, esp_ble_gattc_cb_param_t *param)
+             ^
+e -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/utils/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include -I C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/port/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/coap/libcoap/include/coap -I C:/msys32/home/sideridis/esp/esp-idf/components/console/ -I /home/sideridis/esp/esp-idf/components/cxx/include -I C:/msys32/home/sideridis/esp/esp-idf/components/driver/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/expat/include/expat -I C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/src -I /home/sideridis/esp/esp-idf/components/freertos/imake[2]: Nothing to be done for 'build'.
+nclude -I C:/msys32/home/sideridis/esp/esp-idf/components/heap/include -I C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/include/ -I C:/msys32/home/sideridis/esp/esp-idf/components/json/include -I C:/msys32/home/sideridis/esp/esp-idf/components/json/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/port_include -I C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/libsodium/src/libsodium/include -I C:/msys32/home/sideridis/esp/esp-idf/components/log/include -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/port -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/include/lwip/posix -I C:/msys32/home/sideridis/esp/esp-idf/components/lwip/apps/ping -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/include -I C:/msys32/home/sideridis/esp/esp-idf/components/mdns/include -I C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/micro-ecc -I C:/msys32/home/sideridis/esp/esp-idf/components/newlib/platform_include -I C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/port/include -I C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/nghttp2/lib/includes -I C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/openssl/include -I /home/sideridis/esp/esp-idf/components/pthread/include -I C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/soc/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/include -I C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/include -I C:/msys32/home/sideridis/esp/esp-idf/components/ulp/include -I C:/msys32/home/sideridis/esp/esp-idf/components/vfs/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/include -I C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/port/include -I /home/sideridis/esp/esp-idf/compomake -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/xtensa-debug-module -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/component.mk COMPONENT_NAME=xtensa-debug-module build
 make[1]: Nothing to be done for 'build'.
-make -C C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/xtensa-debug-module -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/component.mk COMPONENT_NAME=xtensa-debug-module build
-make[1]: Leaving directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
-make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wpa_supplicant'
 make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs'
+make[2]: Nothing to be done for 'build'.
+nents/wpa_supplicant/../esp32/include -I C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/include -I C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/include  -I. -c C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c -o ble_client.o
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling'
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wpa_supplicant'
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc'
 make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/xtensa-debug-module'
 make[1]: Nothing to be done for 'build'.
 make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/xtensa-debug-module'
-Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader_support/libbootloader_support.a'
-Target 'component-bt-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt/libbt.a'
 Target 'component-app_trace-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_trace/libapp_trace.a'
+echo "C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/main.c" >> main.d
 Target 'component-app_update-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_update/libapp_update.a'
 Target 'component-aws_iot-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/aws_iot/libaws_iot.a'
+Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/bootloader_support/libbootloader_support.a'
+Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader_support/libbootloader_support.a'
+Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/log/liblog.a'
+Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/spi_flash/libspi_flash.a'
 Target 'component-coap-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/coap/libcoap.a'
+Target 'component-bt-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt/libbt.a'
 Target 'component-console-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/console/libconsole.a'
+Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/micro-ecc/libmicro-ecc.a'
+Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/soc/libsoc.a'
 Target 'component-cxx-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx/libcxx.a'
+Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader/main/libmain.a'
+make[1]: Leaving directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
 Target 'component-driver-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/driver/libdriver.a'
+Target 'component-esp_adc_cal-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal/libesp_adc_cal.a'
 Target 'component-esp32-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp32/libesp32.a'
 Target 'component-ethernet-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet/libethernet.a'
-Target 'component-esp_adc_cal-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal/libesp_adc_cal.a'
 Target 'component-expat-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat/libexpat.a'
 Target 'component-fatfs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/fatfs/libfatfs.a'
-Target 'component-freertos-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos/libfreertos.a'
 Target 'component-heap-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap/libheap.a'
-Target 'component-json-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/json/libjson.a'
-Target 'component-jsmn-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn/libjsmn.a'
+Target 'component-freertos-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos/libfreertos.a'
 Target 'component-libsodium-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/libsodium/liblibsodium.a'
-Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log/liblog.a'
 Target 'component-lwip-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/lwip/liblwip.a'
+Target 'component-json-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/json/libjson.a'
+Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log/liblog.a'
+Target 'component-jsmn-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn/libjsmn.a'
 Target 'component-mbedtls-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls/libmbedtls.a'
-Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main/libmain.a'
+echo "C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/main/ble_client.c" >> ble_client.d
 Target 'component-mdns-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns/libmdns.a'
 Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc/libmicro-ecc.a'
 Target 'component-newlib-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib/libnewlib.a'
@@ -248,12 +261,16 @@ Target 'component-sdmmc-build' responsible for 'C:/msys32/home/BLE-DoorLock/work
 Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash/libspi_flash.a'
 Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/soc/libsoc.a'
 Target 'component-spiffs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs/libspiffs.a'
+rm -f libmain.a
 Target 'component-tcpip_adapter-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/tcpip_adapter/libtcpip_adapter.a'
 Target 'component-ulp-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ulp/libulp.a'
 Target 'component-vfs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs/libvfs.a'
 Target 'component-wear_levelling-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling/libwear_levelling.a'
 Target 'component-wpa_supplicant-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wpa_supplicant/libwpa_supplicant.a'
 Target 'component-xtensa-debug-module-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/xtensa-debug-module/libxtensa-debug-module.a'
+xtensa-esp32-elf-ar cru libmain.a ble_uart_server.o main.o ble_client.o
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main'
+Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main/libmain.a'
 xtensa-esp32-elf-gcc -nostdlib -u call_user_start_cpu0  -Wl,--gc-sections -Wl,-static -Wl,--start-group  -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_trace -lapp_trace -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/app_update -lapp_update -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/aws_iot  -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bootloader_support -lbootloader_support -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/bt -lbt -L C:/msys32/home/sideridis/esp/esp-idf/components/bt/lib -lbtdm_app -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/coap -lcoap -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/console -lconsole -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/cxx -lcxx -u __cxa_guard_dummy -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/driver -ldriver -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp32 -lesp32 C:/msys32/home/sideridis/esp/esp-idf/components/esp32/libhal.a -LC:/msys32/home/sideridis/esp/esp-idf/components/esp32/lib -lcore -lrtc -lnet80211 -lpp -lwpa -lsmartconfig -lcoexist -lwps -lwpa2 -lespnow -lphy -L C:/msys32/home/sideridis/esp/esp-idf/components/esp32/ld -T esp32_out.ld -u ld_include_panic_highint_hdl -T esp32.common.ld -T esp32.rom.ld -T esp32.peripherals.ld -T esp32.rom.spiram_incompatible_fns.ld -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/esp_adc_cal -lesp_adc_cal -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ethernet -lethernet -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/expat -lexpat -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/fatfs -lfatfs -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/freertos -lfreertos -Wl,--undefined=uxTopUsedPriority -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/heap -lheap -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/jsmn -ljsmn -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/json -ljson -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/libsodium -llibsodium -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/log -llog -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/lwip -llwip -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/main -lmain -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mbedtls -lmbedtls -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/mdns -lmdns -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/micro-ecc -lmicro-ecc -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/newlib C:/msys32/home/sideridis/esp/esp-idf/components/newlib/lib/libc.a C:/msys32/home/sideridis/esp/esp-idf/components/newlib/lib/libm.a -lnewlib -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nghttp -lnghttp -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/nvs_flash -lnvs_flash -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/openssl -lopenssl -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/pthread -lpthread -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/sdmmc -lsdmmc -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/soc -lsoc -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spi_flash -lspi_flash -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/spiffs -lspiffs -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/tcpip_adapter -ltcpip_adapter -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ulp -lulp -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/vfs -lvfs -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wear_levelling -lwear_levelling -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/wpa_supplicant -lwpa_supplicant -LC:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/xtensa-debug-module -lxtensa-debug-module -lgcc -lstdc++ -lgcov -Wl,--end-group -Wl,-EL -o C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ble_nus.elf -Wl,-Map=C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ble_nus.map
 python C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py --chip esp32 elf2image --flash_mode "dio" --flash_freq "40m" --flash_size "2MB"  -o C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ble_nus.bin C:/msys32/home/BLE-DoorLock/workspace/ESP32_ble_UART/build/ble_nus.elf
 esptool.py v2.1
@@ -275,41 +292,42 @@ Compressed 18160 bytes to 10740...
 Writing at 0x00001000... (100 %)
 Wrote 18160 bytes (10740 compressed) at 0x00001000 in 0.9 seconds (effective 153.2 kbit/s)...
 Hash of data verified.
-Compressed 693104 bytes to 373523...
+Compressed 703568 bytes to 379226...
 
 Writing at 0x00010000... (4 %)
 Writing at 0x00014000... (8 %)
-Writing at 0x00018000... (13 %)
-Writing at 0x0001c000... (17 %)
-Writing at 0x00020000... (21 %)
-Writing at 0x00024000... (26 %)
-Writing at 0x00028000... (30 %)
-Writing at 0x0002c000... (34 %)
-Writing at 0x00030000... (39 %)
-Writing at 0x00034000... (43 %)
-Writing at 0x00038000... (47 %)
-Writing at 0x0003c000... (52 %)
-Writing at 0x00040000... (56 %)
-Writing at 0x00044000... (60 %)
-Writing at 0x00048000... (65 %)
-Writing at 0x0004c000... (69 %)
-Writing at 0x00050000... (73 %)
-Writing at 0x00054000... (78 %)
-Writing at 0x00058000... (82 %)
-Writing at 0x0005c000... (86 %)
-Writing at 0x00060000... (91 %)
-Writing at 0x00064000... (95 %)
-Writing at 0x00068000... (100 %)
-Wrote 693104 bytes (373523 compressed) at 0x00010000 in 32.8 seconds (effective 168.8 kbit/s)...
+Writing at 0x00018000... (12 %)
+Writing at 0x0001c000... (16 %)
+Writing at 0x00020000... (20 %)
+Writing at 0x00024000... (25 %)
+Writing at 0x00028000... (29 %)
+Writing at 0x0002c000... (33 %)
+Writing at 0x00030000... (37 %)
+Writing at 0x00034000... (41 %)
+Writing at 0x00038000... (45 %)
+Writing at 0x0003c000... (50 %)
+Writing at 0x00040000... (54 %)
+Writing at 0x00044000... (58 %)
+Writing at 0x00048000... (62 %)
+Writing at 0x0004c000... (66 %)
+Writing at 0x00050000... (70 %)
+Writing at 0x00054000... (75 %)
+Writing at 0x00058000... (79 %)
+Writing at 0x0005c000... (83 %)
+Writing at 0x00060000... (87 %)
+Writing at 0x00064000... (91 %)
+Writing at 0x00068000... (95 %)
+Writing at 0x0006c000... (100 %)
+Wrote 703568 bytes (379226 compressed) at 0x00010000 in 33.4 seconds (effective 168.8 kbit/s)...
 Hash of data verified.
 Compressed 3072 bytes to 82...
 
 Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (82 compressed) at 0x00008000 in 0.0 seconds (effective 1841.3 kbit/s)...
+Wrote 3072 bytes (82 compressed) at 0x00008000 in 0.0 seconds (effective 1909.1 kbit/s)...
 Hash of data verified.
 
 Leaving...
 Hard resetting...
 
-16:31:23 Build Finished (took 49s.954ms)
+16:57:07 Build Finished (took 51s.414ms)
 

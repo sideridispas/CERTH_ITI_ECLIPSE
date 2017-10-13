@@ -8,21 +8,21 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="scan_res"/>
-			<item value="read-R"/>
-			<item value="read_R"/>
-			<item value="esp_gatts_cb"/>
-			<item value="esp_gatts_cb("/>
-			<item value="esp_gattc_cb"/>
-			<item value=".char_val-&gt;attr_value"/>
-			<item value="esp_ble_gatts_set_attr_value"/>
-			<item value="esp_ble_gatts_register_callback"/>
-			<item value="esp_ble_gap_register_callback"/>
-			<item value="gl_char"/>
-			<item value="delay"/>
-			<item value="char1_write_handler-RSSI"/>
-			<item value="scan_rst.rssi"/>
+			<item value="BLE observe complete"/>
+			<item value="REMOTE BDA"/>
+			<item value="btc_gattc_call_handler"/>
+			<item value="ESP_GATTC_CONNECT_EVT"/>
+			<item value="gatt_client_main"/>
+			<item value="ESP_GATTS_EXEC_WRITE_EVT"/>
+			<item value="esp_ble_gap_start_advertising"/>
+			<item value="name"/>
 			<item value="rssi"/>
+			<item value="ESP_GAP_BLE_SCAN_RESULT_EVT"/>
+			<item value="esp_gap_cb"/>
+			<item value="ROOM"/>
+			<item value="room"/>
+			<item value="BD_ADDR"/>
+			<item value="remote_bda"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="284" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="391" key="DIALOG_HEIGHT"/>
-		<item value="1260" key="DIALOG_X_ORIGIN"/>
-		<item value="498" key="DIALOG_Y_ORIGIN"/>
+		<item value="1333" key="DIALOG_X_ORIGIN"/>
+		<item value="466" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

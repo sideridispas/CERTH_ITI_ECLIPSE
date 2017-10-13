@@ -30,6 +30,7 @@
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\api\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\nvs_flash\test_nvs_host&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\driver\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\device\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.341189404" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -45,6 +46,7 @@
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\api\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\nvs_flash\test_nvs_host&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\driver\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\device\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1227834306" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
 							</tool>
@@ -59,6 +61,7 @@
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\api\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\nvs_flash\test_nvs_host&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\driver\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${IDF_PATH}\components\bt\bluedroid\device\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.55912631" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>
