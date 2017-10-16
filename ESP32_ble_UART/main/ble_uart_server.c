@@ -342,7 +342,7 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     if(flag_state == 0){
 
     	printf("[f=0] Advertiser name: ");
-    	for(int i=0;i<16;i++){
+    	for(int i=0;i<6;i++){
     		BT_name[i] = gl_char[0].char_val->attr_value[i];
     		printf("%c",BT_name[i]);
 
@@ -356,45 +356,39 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 		}else if(flag_state == 1){
 			printf("[f=1] Whaaat??\n");
 		}else if(flag_state == 2){
-			printf("[f=2] RSSI val: %d\n", rssi_val);
+			printf("[f=2]\n");
 			unsigned char input[16];
 			unsigned char f_output[16];
 
-			printf("received input:");
-			for(int i=0;i<16;i++){
-				input[i] = gl_char[0].char_val->attr_value[i];
-				printf("%02X",input[i]);
-			}
-			printf(" in hex\n\n");
+//			printf("received input:");
+//			for(int i=0;i<16;i++){
+//				input[i] = gl_char[0].char_val->attr_value[i];
+//				printf("%02X",input[i]);
+//			}
+//			printf(" in hex\n\n");
 			printf("DECODING IN AES\n\n");
 
 			esp_aes_decrypt(&aes_ctx,input, f_output);
 
-			printf("final output: ");
-			for(int i=0;i<16;i++){
-				printf("%02X",f_output[i]);
-			}
-			printf(" in hex\n\n");
+//			printf("final output: ");
+//			for(int i=0;i<16;i++){
+//				printf("%02X",f_output[i]);
+//			}
+//			printf(" in hex\n\n");
 
 
 			//password check here
 			int same = 0; //flag variable
-
 			for(int i=0;i<16;i++){
 				if(RND_PS[i] != f_output[i]){
 					//printf("WRONG!!\n");
 					same = -1;
-				}else{
-					//printf("SAME!\n");
 				}
 			}
 
-			//RSSI check here
-
-
 			//BOTH CRITERIA MET => UNLOCK
-			if((same == 0)&& (abs(rssi_val) < 60) ){
-				printf("CORRECT PASSWORD & IN RANGE\n\n");
+			if(same == 0){
+				printf("CORRECT PASSWORD & IN RANGE (RSSI:%d)\n\n", rssi_val);
 
 				//Unlock the door for a few seconds
 				gpio_set_level(RED_LED_PIN,LOW);
@@ -410,11 +404,10 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				printf("Wrong Encrypted Password & Out of range\n");
 			}else if((same == -1)){
 				printf("Wrong Encrypted Password\n");
-			}else if (abs(rssi_val) >60){
-				printf("Out of range\n");
 			}
 			printf("[PLEASE GIVE ADV NAME]\n");
 			flag_state = 0;
+			memset(&BT_name[0], 0, sizeof(BT_name));
 
     }
 }
@@ -707,13 +700,6 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         //If client is connected proceed with RND_PS write to characteristic
         if(param->connect.is_connected){
         	printf("\nCLIENT CONNECTED\n\n");
-
-
-        	esp_log_buffer_hex(GATTS_TAG, param->connect.remote_bda, sizeof(esp_bd_addr_t));
-
-        	esp_ble_gap_cb_param_t *p = (esp_ble_gap_cb_param_t *)param;
-        	printf("scan-RSSI: %d\n", p->scan_rst.rssi);
-        	printf("read-RSSI: %d\n", p->read_rssi_cmpl.rssi);
 
         	uint32_t RND_PS_temp[4];
 

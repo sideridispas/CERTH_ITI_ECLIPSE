@@ -2,13 +2,17 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="BTM_BLE_AD_TYPE_TX_PWR" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="BTM_BLE_AD_TYPE_TX_PWR"/>
+			<item value="scan-RSSI"/>
+			<item value="btc_search_callback"/>
 			<item value="BLE observe complete"/>
+			<item value="esp_log"/>
 			<item value="REMOTE BDA"/>
 			<item value="btc_gattc_call_handler"/>
 			<item value="ESP_GATTC_CONNECT_EVT"/>
@@ -19,10 +23,6 @@
 			<item value="rssi"/>
 			<item value="ESP_GAP_BLE_SCAN_RESULT_EVT"/>
 			<item value="esp_gap_cb"/>
-			<item value="ROOM"/>
-			<item value="room"/>
-			<item value="BD_ADDR"/>
-			<item value="remote_bda"/>
 		</list>
 		<list key="replacehistory">
 		</list>

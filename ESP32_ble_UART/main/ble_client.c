@@ -38,6 +38,8 @@
 #include "esp_bt_main.h"
 #include "esp_gatt_common_api.h"
 
+#include <math.h>
+
 #define GATTC_TAG "GATTC_DEMOooo"
 #define REMOTE_SERVICE_UUID        0x00FF
 #define REMOTE_NOTIFY_CHAR_UUID    0xFF01
@@ -317,6 +319,8 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
 
     uint8_t *adv_name = NULL;
     uint8_t adv_name_len = 0;
+    uint8_t *tx_pow = NULL;
+    uint8_t tx_pow_len = 0;
     switch (event) {
     case ESP_GAP_BLE_SCAN_PARAM_SET_COMPLETE_EVT: {
 
@@ -346,20 +350,33 @@ static void esp_gap_cb(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
             //esp_log_buffer_hex(GATTC_TAG, scan_result->scan_rst.bda, 6);
             //ESP_LOGI(GATTC_TAG, "searched Adv Data Len %d, Scan Response Len %d", scan_result->scan_rst.adv_data_len, scan_result->scan_rst.scan_rsp_len);
             adv_name = esp_ble_resolve_adv_data(scan_result->scan_rst.ble_adv, ESP_BLE_AD_TYPE_NAME_CMPL, &adv_name_len);
+            //tx_pow = esp_ble_resolve_adv_data(scan_result->scan_rst.ble_adv, ESP_BLE_AD_TYPE_TX_PWR, &tx_pow_len);
             //esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
             //ESP_LOGI(GATTC_TAG, "\n");
             if (adv_name != NULL) { //old: (adv_name != NULL)
             	//esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
             	int prox = scan_result->scan_rst.rssi;
             	if(flag_state == 1){
-            		if (strcmp((const char *)adv_name, (const char *)BT_name) == 0){
+            		//printf("tx_pow: %d\n", tx_pow);
+            		if (strncmp((const char *)adv_name, (const char *)BT_name,6) == 0){
 						printf("Name match!\n");
 						//esp_log_buffer_char(GATTC_TAG, adv_name, adv_name_len);
-						ESP_LOGI(GATTC_TAG, "RSSI: %d ", prox);
-						rssi_val = prox;
-						flag_state = 2;
+						ESP_LOGI(GATTC_TAG, "RSSI: %d\n", prox);
+//						ESP_LOGI(GATTC_TAG, "TX: %d\n ", tx_pow[0]);
+//
+//						double d = pow((double)10, ((double) tx_pow[0] - prox) / (10 * 2));
+//						printf("distance: %f m\n", d);
 
-						printf("[PLEASE GIVE ENCRYPTED PS]\n");
+						if(abs(prox) < 60){
+							rssi_val = prox;
+							flag_state = 2;
+							printf("[PLEASE GIVE ENCRYPTED PS]\n");
+						}else{
+							flag_state = 0;
+							printf("Out of range\n");
+							printf("[PLEASE GIVE ADV NAME]\n");
+
+						}
 						esp_ble_gap_stop_scanning();
 
 	//            		if(abs(prox) <=60){

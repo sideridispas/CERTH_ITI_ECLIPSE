@@ -111,7 +111,8 @@ ble_client.o: \
  C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_defs.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_defs.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_bt_main.h \
- C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_common_api.h
+ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_common_api.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/math.h
 
 C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/stdint.h:
 
@@ -336,4 +337,6 @@ C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gat
 C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_bt_main.h:
 
 C:/msys32/home/sideridis/esp/esp-idf/components/bt/bluedroid/api/include/esp_gatt_common_api.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/math.h:
 /home/BLE-DoorLock/workspace/ESP32_ble_UART/main/./ble_client.c:
