@@ -339,42 +339,44 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
     //CHECK GIA EISODO STO CRYPTO_PS
 
-    if(flag_state == 0){
-
-    	printf("[f=0] Advertiser name: ");
-    	for(int i=0;i<6;i++){
-    		BT_name[i] = gl_char[0].char_val->attr_value[i];
-    		printf("%c",BT_name[i]);
-
-    		//the unit of the duration is second
-    		uint32_t duration = 60;
-    		esp_ble_gap_start_scanning(duration);
-		}
-    	printf("\n");
-    	printf("[PLEASE ADVERTISE NOW]\n");
-    	flag_state = 1;
-		}else if(flag_state == 1){
-			printf("[f=1] Whaaat??\n");
-		}else if(flag_state == 2){
-			printf("[f=2]\n");
+//    if(flag_state == 0){
+//
+//    	printf("[f=0] Advertiser name: ");
+//    	for(int i=0;i<6;i++){
+//    		BT_name[i] = gl_char[0].char_val->attr_value[i];
+//    		printf("%c",BT_name[i]);
+//
+//    		//the unit of the duration is second
+//    		uint32_t duration = 60;
+//    		esp_ble_gap_start_scanning(duration);
+//		}
+//    	printf("\n");
+//    	printf("[PLEASE ADVERTISE NOW]\n");
+//    	flag_state = 1;
+//		}else if(flag_state == 1){
+//			printf("[f=1] Whaaat??\n");
+//			printf("[PLEASE GIVE ADV NAME]\n");
+//			flag_state = 0;
+//		}else if(flag_state == 2){
+//			printf("[f=2]\n");
 			unsigned char input[16];
 			unsigned char f_output[16];
 
-//			printf("received input:");
-//			for(int i=0;i<16;i++){
-//				input[i] = gl_char[0].char_val->attr_value[i];
-//				printf("%02X",input[i]);
-//			}
-//			printf(" in hex\n\n");
+			printf("received input:");
+			for(int i=0;i<16;i++){
+				input[i] = gl_char[0].char_val->attr_value[i];
+				printf("%02X",input[i]);
+			}
+			printf(" in hex\n\n");
 			printf("DECODING IN AES\n\n");
 
 			esp_aes_decrypt(&aes_ctx,input, f_output);
 
-//			printf("final output: ");
-//			for(int i=0;i<16;i++){
-//				printf("%02X",f_output[i]);
-//			}
-//			printf(" in hex\n\n");
+			printf("final output: ");
+			for(int i=0;i<16;i++){
+				printf("%02X",f_output[i]);
+			}
+			printf(" in hex\n\n");
 
 
 			//password check here
@@ -386,8 +388,9 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				}
 			}
 
+			printf("RSSI value: %d\n", rssi_val);
 			//BOTH CRITERIA MET => UNLOCK
-			if(same == 0){
+			if(same == 0 && (abs(rssi_val) < 60)){
 				printf("CORRECT PASSWORD & IN RANGE (RSSI:%d)\n\n", rssi_val);
 
 				//Unlock the door for a few seconds
@@ -400,16 +403,18 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				gpio_set_level(RED_LED_PIN,HIGH);
 				gpio_set_level(GREEN_LED_PIN,LOW);
 				printf("~DOOR LOCKED AGAIN\n\n");
-			}else if((same == -1) && (abs(rssi_val) >60)){
+			}else if((same == -1) && (abs(rssi_val) > 60)){
 				printf("Wrong Encrypted Password & Out of range\n");
 			}else if((same == -1)){
 				printf("Wrong Encrypted Password\n");
+			}else if(abs(rssi_val) > 60){
+				printf("Out Of Range\n");
 			}
-			printf("[PLEASE GIVE ADV NAME]\n");
-			flag_state = 0;
-			memset(&BT_name[0], 0, sizeof(BT_name));
-
-    }
+//			printf("[PLEASE GIVE ADV NAME]\n");
+//			flag_state = 0;
+//			memset(&BT_name[0], 0, sizeof(BT_name));
+//
+//    }
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
@@ -583,6 +588,10 @@ void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
     case ESP_GAP_BLE_ADV_DATA_SET_COMPLETE_EVT:
         esp_ble_gap_start_advertising(&ble_adv_params);
         break;
+    case ESP_GAP_BLE_READ_RSSI_COMPLETE_EVT:
+    	printf("HEYY RSSI: %d", param->read_rssi_cmpl.rssi);
+    	rssi_val = param->read_rssi_cmpl.rssi;
+    	break;
     default:
         break;
     }
@@ -618,6 +627,9 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
 //        rsp.attr_value.value[3] = 0x0D;
 //        esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id,
 //                                    ESP_GATT_OK, &rsp);
+    	printf("Yo - READ\n");
+    	printf("read Address: %d, %d, %d, %d, %d, %d\n",param->read.bda[0],  param->read.bda[1], param->read.bda[2],
+    	    			param->read.bda[3], param->read.bda[4], param->read.bda[5]);
         gatts_check_callback(event, gatts_if, param);
         break;
     }
@@ -625,7 +637,11 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         //ESP_LOGI(GATTS_TAG, "GATT_WRITE_EVT, conn_id %d, trans_id %d, handle %d\n", param->write.conn_id, param->write.trans_id, param->write.handle);
         //ESP_LOGI(GATTS_TAG, "GATT_WRITE_EVT, value len %d, value %08x\n", param->write.len, *(uint32_t *)param->write.value);
 //       esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
-        gatts_check_callback(event, gatts_if, param);
+    	printf("Yo - WRITE\n");
+    	printf("write Address: %d, %d, %d, %d, %d, %d\n",param->write.bda[0],  param->write.bda[1], param->write.bda[2],
+    			param->write.bda[3], param->write.bda[4], param->write.bda[5]);
+    	esp_ble_gap_read_rssi(param->write.bda);
+    	gatts_check_callback(event, gatts_if, param);
         break;
     }
     case ESP_GATTS_EXEC_WRITE_EVT:

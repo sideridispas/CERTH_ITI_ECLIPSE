@@ -37,7 +37,7 @@
 
 #include "driver/gpio.h"
 
-#include "ble_client.c"
+//#include "ble_client.c"
 
 
 
@@ -90,7 +90,7 @@ void app_main() {
 
     gatt_server_main();
 
-    gatt_client_main();
+    //gatt_client_main();
 
 
 
