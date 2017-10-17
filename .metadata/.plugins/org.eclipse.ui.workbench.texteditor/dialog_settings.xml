@@ -2,29 +2,35 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="BTM_BLE_AD_TYPE_TX_PWR" key="selection"/>
+		<item value="char2_val" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="gatts_demo_char2_val"/>
+			<item value="gatts_demo_char1_val"/>
+			<item value="gl_char"/>
+			<item value="gatts_event_handler"/>
+			<item value="gl_profile_tab[PROFILE_A_APP_ID]"/>
+			<item value="gatts_profile_inst"/>
+			<item value="a_property"/>
+			<item value="property"/>
+			<item value="GATTS_DEMO_CHAR_VAL_LEN_MAX"/>
+			<item value=".bda"/>
+			<item value="address"/>
+			<item value="event_handler"/>
+			<item value="gatts_profile_a_event_handler"/>
 			<item value="BTM_BLE_AD_TYPE_TX_PWR"/>
 			<item value="scan-RSSI"/>
-			<item value="btc_search_callback"/>
-			<item value="BLE observe complete"/>
-			<item value="esp_log"/>
-			<item value="REMOTE BDA"/>
-			<item value="btc_gattc_call_handler"/>
-			<item value="ESP_GATTC_CONNECT_EVT"/>
-			<item value="gatt_client_main"/>
-			<item value="ESP_GATTS_EXEC_WRITE_EVT"/>
-			<item value="esp_ble_gap_start_advertising"/>
-			<item value="name"/>
-			<item value="rssi"/>
-			<item value="ESP_GAP_BLE_SCAN_RESULT_EVT"/>
-			<item value="esp_gap_cb"/>
 		</list>
 		<list key="replacehistory">
+			<item value="char2_val"/>
+			<item value="char1_val"/>
+			<item value="gl_profile"/>
+			<item value="char1_property"/>
+			<item value="gatts_char1_val"/>
+			<item value="GATTS_CHAR_VAL_LEN_MAX"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
