@@ -46,6 +46,9 @@ void unlock();
 void generate_store_RND_PS();
 void ble_init();
 
+void timer_isr(void* arg);
+void init_timer(int timer_period_us);
+
 
 #ifdef __cplusplus
 }

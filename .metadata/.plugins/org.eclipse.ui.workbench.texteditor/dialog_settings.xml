@@ -2,12 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="char2_val" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="GIVE ADV NAME"/>
+			<item value="esp_ble_gap_read_rssi"/>
+			<item value="heyy"/>
+			<item value="hee"/>
+			<item value="write Address"/>
+			<item value="gatts_demo_descr2_val"/>
+			<item value="gatts_demo_descr1_val"/>
 			<item value="gatts_demo_char2_val"/>
 			<item value="gatts_demo_char1_val"/>
 			<item value="gl_char"/>
@@ -16,15 +23,10 @@
 			<item value="gatts_profile_inst"/>
 			<item value="a_property"/>
 			<item value="property"/>
-			<item value="GATTS_DEMO_CHAR_VAL_LEN_MAX"/>
-			<item value=".bda"/>
-			<item value="address"/>
-			<item value="event_handler"/>
-			<item value="gatts_profile_a_event_handler"/>
-			<item value="BTM_BLE_AD_TYPE_TX_PWR"/>
-			<item value="scan-RSSI"/>
 		</list>
 		<list key="replacehistory">
+			<item value="descr2_val"/>
+			<item value="descr1_val"/>
 			<item value="char2_val"/>
 			<item value="char1_val"/>
 			<item value="gl_profile"/>

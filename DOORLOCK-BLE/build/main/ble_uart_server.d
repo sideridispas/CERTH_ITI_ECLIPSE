@@ -123,7 +123,10 @@ ble_uart_server.o: \
  C:/msys32/home/sideridis/esp/esp-idf/components/driver/include/driver/periph_ctrl.h \
  C:/msys32/home/BLE-DoorLock/workspace/DOORLOCK-BLE/main/ble_uart_server.h \
  C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/hwcrypto/aes.h \
- C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/rom/aes.h
+ C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/rom/aes.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/driver/include/driver/timer.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include/soc/timer_group_reg.h \
+ C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include/soc/timer_group_struct.h
 
 C:/msys32/home/sideridis/esp/esp-idf/components/newlib/include/stdio.h:
 
@@ -372,4 +375,10 @@ C:/msys32/home/BLE-DoorLock/workspace/DOORLOCK-BLE/main/ble_uart_server.h:
 C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/hwcrypto/aes.h:
 
 C:/msys32/home/sideridis/esp/esp-idf/components/esp32/include/rom/aes.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/driver/include/driver/timer.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include/soc/timer_group_reg.h:
+
+C:/msys32/home/sideridis/esp/esp-idf/components/soc/esp32/include/soc/timer_group_struct.h:
 /home/BLE-DoorLock/workspace/DOORLOCK-BLE/main/./ble_uart_server.c:
