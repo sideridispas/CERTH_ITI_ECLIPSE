@@ -59,8 +59,9 @@
 //Random number generator: register RNG_DATA_REG address
 #define DR_REG_RNG_BASE 0x3ff75144
 
-//Timer for response of CRYPTO_PS
-static intr_handle_t s_timer_handle;
+//STACK_SIZE for vTimout task
+#define STACK_SIZE 2048
+#define TIMEOUT_SEC 6
 
 //RSSI value of advertiser
 int rssi_val;
@@ -72,6 +73,12 @@ esp_aes_context  aes_ctx = {
 	.key_bytes = 32,
 	.key = "hereHaveTheKeyThatKeepsTheSecret",
 };
+
+//Task handle for timeout task
+TaskHandle_t xTimeout_Handle = NULL;
+
+//flag to know if RND_PS is read
+int flag_read = 0;
 
 uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
 uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33}; //old: 0x11,0x22,0x33
@@ -248,57 +255,68 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
 //***** MY CODE BELOW *****
 
-	unsigned char input[16];
-	unsigned char f_output[16];
-
-
-	for(int i=0;i<16;i++){
-		input[i] = gl_char[0].char_val->attr_value[i];
-	}
-
-
-//	printf("received input:");
-//	for(int i=0;i<16;i++){
-//		printf("%02X",input[i]);
-//	}
-//	printf(" in hex\n\n");
-
-
-//	printf("DECODING IN AES\n\n");
-
-	esp_aes_decrypt(&aes_ctx,input, f_output);
-
-	printf("Decoded RND_PS: ");
-	for(int i=0;i<16;i++){
-		printf("%02X",f_output[i]);
-	}
-	printf(" in hex\n\n");
-
-
-	//password check here
-	int same = 0; //flag variable
-	for(int i=0;i<16;i++){
-		if(RND_PS[i] != f_output[i]){
-			//printf("WRONG!!\n");
-			same = -1;
+    if (flag_read == 1){
+    	//If write CRYPTO_PS response is on time (xTimeout_Handle != NULL) it will delete the timeout task
+		if(xTimeout_Handle != NULL)
+		{
+			//printf("Prior of task deletion\n");
+			vTaskDelete(xTimeout_Handle);
+			//printf("Timeout task deleted!\n");
 		}
-	}
 
-	//CRITERIA CONTROL
-	if(same == 0 && (abs(rssi_val) > 20) && (abs(rssi_val) < 60)){
-		printf("======================\nUNLOCK!\nPassword:\tOK\nRange:  \tOK\n======================\n\n");
-		unlock();
-		generate_store_RND_PS();
-	}else if((same == -1) && (abs(rssi_val) > 60)){
-		printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOUT\n======================\n\n");
-		generate_store_RND_PS();
-	}else if((same == -1)){
-		printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOK\n======================\n\n");
-		generate_store_RND_PS();
-	}else if(abs(rssi_val) > 60){
-		printf("======================\nTRY AGAIN\nPassword:\tOK\nRange:  \tOUT\n======================\n\n");
-	}
+		unsigned char input[16];
+		unsigned char f_output[16];
 
+
+		for(int i=0;i<16;i++){
+			input[i] = gl_char[0].char_val->attr_value[i];
+		}
+
+
+//		printf("received input:");
+//		for(int i=0;i<16;i++){
+//			printf("%02X",input[i]);
+//		}
+//		printf(" in hex\n\n");
+//
+//
+//		printf("DECODING IN AES\n\n");
+
+		esp_aes_decrypt(&aes_ctx,input, f_output);
+
+		printf("Decoded RND_PS: ");
+		for(int i=0;i<16;i++){
+			printf("%02X",f_output[i]);
+		}
+		printf(" in hex\n\n");
+
+
+		//password check here
+		int same = 0; //flag variable
+		for(int i=0;i<16;i++){
+			if(RND_PS[i] != f_output[i]){
+				//printf("WRONG!!\n");
+				same = -1;
+			}
+		}
+
+		//CRITERIA CONTROL
+		if(same == 0 && (abs(rssi_val) > 20) && (abs(rssi_val) < 60)){
+			printf("======================\nUNLOCK!\nPassword:\tOK\nRange:  \tOK\n======================\n\n");
+			unlock();
+			generate_store_RND_PS();
+		}else if((same == -1) && (abs(rssi_val) > 60)){
+			printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOUT\n======================\n\n");
+			generate_store_RND_PS();
+		}else if((same == -1)){
+			printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOK\n======================\n\n");
+			generate_store_RND_PS();
+		}else if(abs(rssi_val) > 60){
+			printf("======================\nTRY AGAIN\nPassword:\tOK\nRange:  \tOUT\n======================\n\n");
+		}
+    }else{
+    	printf("ERROR: Please read RND_PS first!\n\n");
+    }
 }
 
 void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
@@ -442,8 +460,13 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         break;
     case ESP_GATTS_READ_EVT: {
     	esp_ble_gap_read_rssi(param->read.bda);
-    	printf("RND_PS read! Timeout countdown begins\n");
-    	init_timer(2000);
+    	printf("RND_PS read! Countdown of %d seconds begins\n\n",TIMEOUT_SEC);
+    	flag_read = 1;
+
+    	// Create the task, storing the handle.
+    	xTaskCreate(vTimout, "Timeout", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTimeout_Handle);
+
+
     	gatts_check_callback(event, gatts_if, param);
         break;
     }
@@ -559,10 +582,10 @@ void unlock(){
 	printf("DOOR UNLOCKED\n\n");
 
 	//lock again after a few seconds
-	vTaskDelay(4000 / portTICK_RATE_MS); // delay ??s
+	vTaskDelay(5000 / portTICK_RATE_MS); // delay ??s
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
-	printf("~DOOR LOCKED AGAIN\n\n");
+	printf("DOOR LOCKED\n\n");
 }
 
 void generate_store_RND_PS(){
@@ -597,6 +620,8 @@ void generate_store_RND_PS(){
 	}
 	gatts_demo_char2_val.attr_len = 16;
 	gl_char[1].char_val = &gatts_demo_char2_val;
+
+	flag_read = 0;
 
 	printf("RND_PS: ");
 	for(int i=0;i<16;i++){
@@ -641,30 +666,14 @@ void ble_init(){
     esp_ble_gatts_app_register(BLE_PROFILE_APP_ID);
 }
 
-void timer_isr(void* arg)
-{
-//    TIMERG0.int_clr_timers.t0 = 1;
-//    TIMERG0.hw_timer[0].config.alarm_en = 1;
+void vTimout( void *pvParameters ){
+	/* Block for 5sec (5000ms) */
+	const TickType_t xDelay = (TIMEOUT_SEC *1000) / portTICK_PERIOD_MS;
+	vTaskDelay(xDelay);
 
-    printf("-Timeout reached!- Disconnecting..\n");
-}
+	printf("TIMEOUT REACHED! Generating new RND_PS\n\n");
+	generate_store_RND_PS();
 
-void init_timer(int timer_period_us)
-{
-    timer_config_t config = {
-            .alarm_en = 1,
-            .counter_en = 0,
-            .intr_type = TIMER_INTR_LEVEL,
-            .counter_dir = TIMER_COUNT_UP,
-            .auto_reload = 0,
-            .divider = 80   /* 1 us per tick */
-    };
-
-    timer_init(TIMER_GROUP_0, TIMER_0, &config);
-    timer_set_counter_value(TIMER_GROUP_0, TIMER_0, 0);
-    timer_set_alarm_value(TIMER_GROUP_0, TIMER_0, timer_period_us);
-    timer_enable_intr(TIMER_GROUP_0, TIMER_0);
-    timer_isr_register(TIMER_GROUP_0, TIMER_0, &timer_isr, NULL, 0, &s_timer_handle);
-
-    timer_start(TIMER_GROUP_0, TIMER_0);
+	vTaskDelete( NULL );
+//	xTimeout_Handle = NULL;
 }

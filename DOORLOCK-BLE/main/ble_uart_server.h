@@ -25,7 +25,7 @@ extern "C" {
 #define GATTS_CHAR_NUM		2
 #define GATTS_NUM_HANDLE     1+(3*GATTS_CHAR_NUM)
 
-#define BLE_DEVICE_NAME            "ROOM 33"
+#define BLE_DEVICE_NAME            "Room 2.23"
 #define BLE_MANUFACTURER_DATA_LEN  4
 
 #define GATTS_CHAR_VAL_LEN_MAX		16
@@ -46,8 +46,7 @@ void unlock();
 void generate_store_RND_PS();
 void ble_init();
 
-void timer_isr(void* arg);
-void init_timer(int timer_period_us);
+void vTimout(void *pvParameters);
 
 
 #ifdef __cplusplus

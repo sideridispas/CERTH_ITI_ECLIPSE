@@ -40,8 +40,13 @@
 void app_main() {
 
 	printf("Initialization..\n");
+
+	//Lock the door before anything
 	lock_arm();
+
+	//Setup of BLE processes and start the BLE Server
 	ble_init();
+
 	printf("Ready\n");
 
     return;
