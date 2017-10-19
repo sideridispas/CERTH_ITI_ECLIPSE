@@ -61,7 +61,16 @@
 
 //STACK_SIZE for vTimout task
 #define STACK_SIZE 2048
-#define TIMEOUT_SEC 6
+
+/********************************* USER DEFINED PARAMETERS ***********************************/
+
+//Time threshold in second from moment of RND_PS read until considered unsuccessful attempt
+#define TIMEOUT_SEC 5
+
+//RSSI threshold value for the proximity
+#define RSSI_IN_RANGE 60
+
+/********************************************************************************************/
 
 //RSSI value of advertiser
 int rssi_val;
@@ -79,6 +88,9 @@ TaskHandle_t xTimeout_Handle = NULL;
 
 //flag to know if RND_PS is read
 int flag_read = 0;
+
+//counter of unsuccessful unlock attempts
+int unsucc_times = 0;
 
 uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
 uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33}; //old: 0x11,0x22,0x33
@@ -181,7 +193,7 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.char_uuid.len = ESP_UUID_LEN_128,
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x02, 0x00, 0x40, 0x6E },
 				.char_perm = ESP_GATT_PERM_WRITE, //old: ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
-				.char_property = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
+				.char_property = ESP_GATT_CHAR_PROP_BIT_WRITE,//ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
 				.char_val = &gatts_demo_char1_val,
 				.char_control = NULL,
 				.char_handle = 0,
@@ -193,7 +205,7 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.char_uuid.len = ESP_UUID_LEN_128,
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x03, 0x00, 0x40, 0x6E },
 				.char_perm = ESP_GATT_PERM_READ, //old: ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
-				.char_property = ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
+				.char_property = ESP_GATT_CHAR_PROP_BIT_READ,//ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
 				.char_val = &gatts_demo_char2_val,
 				.char_control=NULL,
 				.char_handle=0,
@@ -292,26 +304,42 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
 
 		//password check here
-		int same = 0; //flag variable
+		int same = 1; //flag variable
 		for(int i=0;i<16;i++){
 			if(RND_PS[i] != f_output[i]){
 				//printf("WRONG!!\n");
-				same = -1;
+				same = 0;
 			}
 		}
 
+
 		//CRITERIA CONTROL
-		if(same == 0 && (abs(rssi_val) > 20) && (abs(rssi_val) < 60)){
+		if(same == 1 && (abs(rssi_val) < RSSI_IN_RANGE)){
 			printf("======================\nUNLOCK!\nPassword:\tOK\nRange:  \tOK\n======================\n\n");
 			unlock();
-			generate_store_RND_PS();
-		}else if((same == -1) && (abs(rssi_val) > 60)){
-			printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOUT\n======================\n\n");
-			generate_store_RND_PS();
-		}else if((same == -1)){
-			printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOK\n======================\n\n");
-			generate_store_RND_PS();
-		}else if(abs(rssi_val) > 60){
+			printf("Disconnecting user..");
+			esp_ble_gap_disconnect(param->write.bda);
+		}else if((same == 0) && (abs(rssi_val) > RSSI_IN_RANGE)){
+			if(unsucc_times == 2){
+				printf("3 unsuccessful unlock attempts!\nDISCNONNECTING!\n\n");
+				unsucc_times = 0;
+				esp_ble_gap_disconnect(param->write.bda);
+			}else{
+				printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOUT\n======================\n\n");
+				unsucc_times++;
+				generate_store_RND_PS();
+			}
+		}else if((same == 0) && (abs(rssi_val) < RSSI_IN_RANGE)){
+			if(unsucc_times == 2){
+				printf("3 unsuccessful unlock attempts!\nDISCNONNECTING!\n\n");
+				unsucc_times = 0;
+				esp_ble_gap_disconnect(param->write.bda);
+			}else{
+				printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOK\n======================\n\n");
+				unsucc_times++;
+				generate_store_RND_PS();
+			}
+		}else if((same == 1) && (abs(rssi_val) > RSSI_IN_RANGE)){
 			printf("======================\nTRY AGAIN\nPassword:\tOK\nRange:  \tOUT\n======================\n\n");
 		}
     }else{
@@ -586,6 +614,8 @@ void unlock(){
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
 	printf("DOOR LOCKED\n\n");
+
+
 }
 
 void generate_store_RND_PS(){
