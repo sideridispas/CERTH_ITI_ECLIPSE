@@ -46,10 +46,10 @@
 
 #include "ble_uart_server.h"
 
-//For AES encryption
+//For AES encryption/decryption
 #include "hwcrypto/aes.h"
 
-//For time-counter waiting the CRYPTO_PS response
+//For timeout counter waiting the CRYPTO_PS response
 #include <stddef.h>
 #include "esp_intr_alloc.h"
 #include "esp_attr.h"
@@ -62,6 +62,9 @@
 
 //RSSI threshold value for the proximity
 #define RSSI_IN_RANGE 60 //dBm
+
+//Number of unsuccessful attempts to unlock before disconnection of client
+#define UNSUCC_ATTEMPTS 3
 
 /*********************************************************************************************/
 
@@ -102,6 +105,9 @@ TaskHandle_t xBlinking_Handle = NULL;
 
 //Task handle for blinking LED task as error indication during connection
 TaskHandle_t xErrorLED_Handle = NULL;
+
+//Address of the connected device 				/**********************************************/
+esp_bd_addr_t address_pass;
 
 //flag to know if RND_PS is read
 int flag_read = 0;
@@ -208,7 +214,6 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.char_val = &char1_val,
 				.char_control = NULL,
 				.char_handle = 0,
-//				.char_read_callback=char1_read_handler,
 				.char_write_callback=char1_write_handler
 		},
 		{
@@ -220,28 +225,10 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.char_val = &char2_val,
 				.char_control=NULL,
 				.char_handle=0,
-				.char_read_callback=char2_read_handler//,
-//				.char_write_callback=char2_write_handler
+				.char_read_callback=char2_read_handler
 		}
 };
 
-//void char1_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
-//	//ESP_LOGI(GATTS_TAG, "char1_read_handler %d\n", param->read.handle);
-//
-//	esp_gatt_rsp_t rsp;
-//	memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
-//	rsp.attr_value.handle = param->read.handle;
-//	if (gl_char[0].char_val!=NULL) {
-//		ESP_LOGI(GATTS_TAG, "char1_read_handler char_val %d\n",gl_char[0].char_val->attr_len);
-//		rsp.attr_value.len = gl_char[0].char_val->attr_len;
-//		for (uint32_t pos=0;pos<gl_char[0].char_val->attr_len&&pos<gl_char[0].char_val->attr_max_len;pos++) {
-//			rsp.attr_value.value[pos] = gl_char[0].char_val->attr_value[pos];
-//		}
-//	}
-//	//ESP_LOGI(GATTS_TAG, "char1_read_handler esp_gatt_rsp_t\n");
-//	esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id,
-//								ESP_GATT_OK, &rsp);
-//}
 
 void char2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	//ESP_LOGI(GATTS_TAG, "char2_read_handler %d\n", param->read.handle);
@@ -331,9 +318,10 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 			printf("Disconnecting user..");
 			esp_ble_gap_disconnect(param->write.bda);
 		}else if((same == 0) && (abs(rssi_val) > RSSI_IN_RANGE)){
-			if(unsucc_times == 2){
+			if(unsucc_times == UNSUCC_ATTEMPTS-1){
 				printf("3 unsuccessful unlock attempts!\nDISCNONNECTING!\n\n");
 				unsucc_times = 0;
+				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 				esp_ble_gap_disconnect(param->write.bda);
 			}else{
 				printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOUT\n======================\n\n");
@@ -343,9 +331,10 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 			}
 		}else if((same == 0) && (abs(rssi_val) < RSSI_IN_RANGE)){
-			if(unsucc_times == 2){
+			if(unsucc_times == UNSUCC_ATTEMPTS-1){
 				printf("3 unsuccessful unlock attempts!\nDISCNONNECTING!\n\n");
 				unsucc_times = 0;
+				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 				esp_ble_gap_disconnect(param->write.bda);
 			}else{
 				printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOK\n======================\n\n");
@@ -355,9 +344,17 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 			}
 		}else if((same == 1) && (abs(rssi_val) > RSSI_IN_RANGE)){
-			printf("======================\nTRY AGAIN\nPassword:\tOK\nRange:  \tOUT\n======================\n\n");
-			//Create a blink LED error indication
-			xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
+			if(unsucc_times == UNSUCC_ATTEMPTS-1){
+				printf("3 unsuccessful unlock attempts!\nDISCNONNECTING!\n\n");
+				unsucc_times = 0;
+				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
+				esp_ble_gap_disconnect(param->write.bda);
+			}else{
+				printf("======================\nTRY AGAIN\nPassword:\tOK\nRange:  \tOUT\n======================\n\n");
+				unsucc_times++;
+				//Create a blink LED error indication
+				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
+			}
 		}
     }else{
     	printf("ERROR: Please read RND_PS first!\n\n");
@@ -365,21 +362,6 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 		xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
     }
 }
-
-//void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
-//	//ESP_LOGI(GATTS_TAG, "char2_write_handler %d\n", param->write.handle);
-//
-//	if (gl_char[1].char_val!=NULL) {
-//		//ESP_LOGI(GATTS_TAG, "char2_write_handler char_val %d\n",param->write.len);
-//		gl_char[1].char_val->attr_len = param->write.len;
-//		for (uint32_t pos=0;pos<param->write.len;pos++) {
-//			gl_char[1].char_val->attr_value[pos]=param->write.value[pos];
-//		}
-//	}
-//	//ESP_LOGI(GATTS_TAG, "char2_write_handler esp_gatt_rsp_t\n");
-//    esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
-//}
-
 
 void gatts_add_char() {
 
@@ -527,7 +509,12 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
     	flag_read = 1;
 
     	//Create a "countdown" timer task to ensure that a RND_PS value will be accessible only for a specified time
-    	xTaskCreate(vTimout, "Timeout", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTimeout_Handle);
+
+    	for(int i=0;i<ESP_BD_ADDR_LEN;i++){
+    		address_pass[i] = param->read.bda[i];
+    	}
+
+    	xTaskCreate(vTimout, "Timeout", STACK_SIZE, &address_pass, tskIDLE_PRIORITY, &xTimeout_Handle);		/********************************************/
 
     	gatts_check_callback(event, gatts_if, param);
         break;
@@ -777,12 +764,25 @@ void vTimout(void *pvParameters){
 	/* Block for TIMEOUT_SEC seconds (*1000ms) */
 	const TickType_t xDelay = (TIMEOUT_SEC *1000) / portTICK_PERIOD_MS;
 	vTaskDelay(xDelay);
-	printf("TIMEOUT REACHED! Generating new RND_PS\n\n");
-	xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
-	generate_store_RND_PS();
+
+	if(unsucc_times == UNSUCC_ATTEMPTS-1){
+		printf("3 unsuccessful unlock attempts!\nDISCNONNECTING!\n\n");
+		unsucc_times = 0;
+		xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
+		uint8_t *testa;
+		testa = (uint8_t*)pvParameters;
+		esp_ble_gap_disconnect(testa);
+	}else{
+		printf("TIMEOUT REACHED! Generating new RND_PS\n\n");
+		unsucc_times++;
+		xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
+		generate_store_RND_PS();
+	}
 	vTaskDelete(NULL);
 }
 
+/* vBlinking function
+ * It is executed by a task and indicates that device is advertising normally */
 void vBlinking(void *pvParameters){
 	while(1){
 		//Blink red led every 2 seconds
@@ -795,6 +795,9 @@ void vBlinking(void *pvParameters){
 	}
 }
 
+/* vErrorLED function
+ * It is executed by a task and indicates a wrong criteria (Password or Range) by flashing the
+ * red LED 2 times */
 void vErrorLED(void *pvParameters){
 	//Blink red led 2 times
 	const TickType_t xOFF = 150 / portTICK_PERIOD_MS;
