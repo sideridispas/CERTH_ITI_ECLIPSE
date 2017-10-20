@@ -1,3 +1,10 @@
+/* Sideridis Paschalis - CERTH ITI GR
+ * BLE - Door Lock project
+ * Source code file
+ *
+ * October 2017
+ */
+
 /* Copyright (c) 2017 pcbreflux. All Rights Reserved.
  *
  * This program is free software: you can redistribute it and/or modify
@@ -48,6 +55,16 @@
 #include "esp_attr.h"
 #include "driver/timer.h"
 
+/********************************* USER DEFINED PARAMETERS ***********************************/
+
+//Time threshold in seconds, from moment of RND_PS read until considered unsuccessful attempt
+#define TIMEOUT_SEC 5 //seconds
+
+//RSSI threshold value for the proximity
+#define RSSI_IN_RANGE 60 //dBm
+
+/*********************************************************************************************/
+
 #define GATTS_TAG "GATTS"
 
 //LED Configuration
@@ -56,28 +73,22 @@
 #define RED_LED_PIN 15
 #define GREEN_LED_PIN 14
 
+//Door lock Pin
+#define DOOR_LOCK_PIN 27
+
 //Random number generator: register RNG_DATA_REG address
 #define DR_REG_RNG_BASE 0x3ff75144
 
 //STACK_SIZE for vTimout task
 #define STACK_SIZE 2048
 
-/********************************* USER DEFINED PARAMETERS ***********************************/
-
-//Time threshold in second from moment of RND_PS read until considered unsuccessful attempt
-#define TIMEOUT_SEC 5
-
-//RSSI threshold value for the proximity
-#define RSSI_IN_RANGE 60
-
-/********************************************************************************************/
-
-//RSSI value of advertiser
+//RSSI value of client when reading the RND_PS
 int rssi_val;
 
 //Random Password used as rolling pass
 uint8_t RND_PS[16];
 
+//AES structure used for decode
 esp_aes_context  aes_ctx = {
 	.key_bytes = 32,
 	.key = "hereHaveTheKeyThatKeepsTheSecret",
@@ -92,16 +103,16 @@ int flag_read = 0;
 //counter of unsuccessful unlock attempts
 int unsucc_times = 0;
 
-uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33};
-uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX] = {0x11,0x22,0x33}; //old: 0x11,0x22,0x33
+uint8_t char1_str[GATTS_CHAR_VAL_LEN_MAX];
+uint8_t char2_str[GATTS_CHAR_VAL_LEN_MAX];
 
-esp_attr_value_t gatts_demo_char1_val = {
+esp_attr_value_t char1_val = {
 	.attr_max_len = GATTS_CHAR_VAL_LEN_MAX,
 	.attr_len		= sizeof(char1_str),
 	.attr_value     = char1_str,
 };
 
-esp_attr_value_t gatts_demo_char2_val = {
+esp_attr_value_t char2_val = {
 	.attr_max_len = GATTS_CHAR_VAL_LEN_MAX,
 	.attr_len		= sizeof(char2_str),
 	.attr_value     = char2_str,
@@ -110,16 +121,10 @@ esp_attr_value_t gatts_demo_char2_val = {
 
 #define BLE_SERVICE_UUID_SIZE ESP_UUID_LEN_128
 
-// Add more UUIDs for more then one Service
-static uint8_t ble_service_uuid128[BLE_SERVICE_UUID_SIZE] = {
-    /* LSB <--------------------------------------------------------------------------------> MSB */
-    //first uuid, 16bit, [12],[13] is the value
-	 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x01, 0x00, 0x40, 0x6E,
-    // 0xXfb, 0x34, 0x9b, 0x5f, 0x80, 0x00, 0x00, 0x80, 0x00, 0x10, 0x00, 0x00, 0xAB, 0xCD, 0x00, 0x00,
-    //0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+//UUID, 16bit, [12],[13] is the value  (LSB <----------------------------------------> MSB)
+static uint8_t ble_service_uuid128[BLE_SERVICE_UUID_SIZE] = {0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x01, 0x00, 0x40, 0x6E};
 
-static uint8_t ble_manufacturer[BLE_MANUFACTURER_DATA_LEN] =  {0x12, 0x23, 0x45, 0x56};
+static uint8_t ble_manufacturer[BLE_MANUFACTURER_DATA_LEN] =  {0x02, 0xE5};
 
 static uint32_t ble_add_char_pos;
 
@@ -194,10 +199,10 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x02, 0x00, 0x40, 0x6E },
 				.char_perm = ESP_GATT_PERM_WRITE, //old: ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
 				.char_property = ESP_GATT_CHAR_PROP_BIT_WRITE,//ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
-				.char_val = &gatts_demo_char1_val,
+				.char_val = &char1_val,
 				.char_control = NULL,
 				.char_handle = 0,
-				.char_read_callback=char1_read_handler,
+//				.char_read_callback=char1_read_handler,
 				.char_write_callback=char1_write_handler
 		},
 		{
@@ -206,31 +211,31 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x03, 0x00, 0x40, 0x6E },
 				.char_perm = ESP_GATT_PERM_READ, //old: ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
 				.char_property = ESP_GATT_CHAR_PROP_BIT_READ,//ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
-				.char_val = &gatts_demo_char2_val,
+				.char_val = &char2_val,
 				.char_control=NULL,
 				.char_handle=0,
-				.char_read_callback=char2_read_handler,
-				.char_write_callback=char2_write_handler
+				.char_read_callback=char2_read_handler//,
+//				.char_write_callback=char2_write_handler
 		}
 };
 
-void char1_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
-	//ESP_LOGI(GATTS_TAG, "char1_read_handler %d\n", param->read.handle);
-
-	esp_gatt_rsp_t rsp;
-	memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
-	rsp.attr_value.handle = param->read.handle;
-	if (gl_char[0].char_val!=NULL) {
-		ESP_LOGI(GATTS_TAG, "char1_read_handler char_val %d\n",gl_char[0].char_val->attr_len);
-		rsp.attr_value.len = gl_char[0].char_val->attr_len;
-		for (uint32_t pos=0;pos<gl_char[0].char_val->attr_len&&pos<gl_char[0].char_val->attr_max_len;pos++) {
-			rsp.attr_value.value[pos] = gl_char[0].char_val->attr_value[pos];
-		}
-	}
-	//ESP_LOGI(GATTS_TAG, "char1_read_handler esp_gatt_rsp_t\n");
-	esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id,
-								ESP_GATT_OK, &rsp);
-}
+//void char1_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
+//	//ESP_LOGI(GATTS_TAG, "char1_read_handler %d\n", param->read.handle);
+//
+//	esp_gatt_rsp_t rsp;
+//	memset(&rsp, 0, sizeof(esp_gatt_rsp_t));
+//	rsp.attr_value.handle = param->read.handle;
+//	if (gl_char[0].char_val!=NULL) {
+//		ESP_LOGI(GATTS_TAG, "char1_read_handler char_val %d\n",gl_char[0].char_val->attr_len);
+//		rsp.attr_value.len = gl_char[0].char_val->attr_len;
+//		for (uint32_t pos=0;pos<gl_char[0].char_val->attr_len&&pos<gl_char[0].char_val->attr_max_len;pos++) {
+//			rsp.attr_value.value[pos] = gl_char[0].char_val->attr_value[pos];
+//		}
+//	}
+//	//ESP_LOGI(GATTS_TAG, "char1_read_handler esp_gatt_rsp_t\n");
+//	esp_ble_gatts_send_response(gatts_if, param->read.conn_id, param->read.trans_id,
+//								ESP_GATT_OK, &rsp);
+//}
 
 void char2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	//ESP_LOGI(GATTS_TAG, "char2_read_handler %d\n", param->read.handle);
@@ -347,19 +352,19 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     }
 }
 
-void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
-	//ESP_LOGI(GATTS_TAG, "char2_write_handler %d\n", param->write.handle);
-
-	if (gl_char[1].char_val!=NULL) {
-		//ESP_LOGI(GATTS_TAG, "char2_write_handler char_val %d\n",param->write.len);
-		gl_char[1].char_val->attr_len = param->write.len;
-		for (uint32_t pos=0;pos<param->write.len;pos++) {
-			gl_char[1].char_val->attr_value[pos]=param->write.value[pos];
-		}
-	}
-	//ESP_LOGI(GATTS_TAG, "char2_write_handler esp_gatt_rsp_t\n");
-    esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
-}
+//void char2_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
+//	//ESP_LOGI(GATTS_TAG, "char2_write_handler %d\n", param->write.handle);
+//
+//	if (gl_char[1].char_val!=NULL) {
+//		//ESP_LOGI(GATTS_TAG, "char2_write_handler char_val %d\n",param->write.len);
+//		gl_char[1].char_val->attr_len = param->write.len;
+//		for (uint32_t pos=0;pos<param->write.len;pos++) {
+//			gl_char[1].char_val->attr_value[pos]=param->write.value[pos];
+//		}
+//	}
+//	//ESP_LOGI(GATTS_TAG, "char2_write_handler esp_gatt_rsp_t\n");
+//    esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
+//}
 
 
 void gatts_add_char() {
@@ -454,11 +459,19 @@ void gatts_check_callback(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, es
 	}
 }
 
-
+/* gap_event_handler
+ * It handles only two GAP events:
+ * -The advertise data set complete event, after which it sets the TX power and starts advertising
+ * -The RSSI read complete event, after which is stores the RSSI measured value in an appropriate variable to be used later on
+ *  during the CRYPTO_PS read event (for proximity check) */
 void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *param) {
+	esp_err_t ret;
     switch (event) {
     case ESP_GAP_BLE_ADV_DATA_SET_COMPLETE_EVT:
-        esp_ble_gap_start_advertising(&ble_adv_params);
+//    	printf("==ESP_BLE_PWR_TYPE_ADV: %d\n",esp_ble_tx_power_get(ESP_BLE_PWR_TYPE_ADV));
+    	ret = esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_N14);
+//    	printf("==ESP_BLE_PWR_TYPE_ADV: %d\n",esp_ble_tx_power_get(ESP_BLE_PWR_TYPE_ADV));
+    	ret = esp_ble_gap_start_advertising(&ble_adv_params);
         break;
     case ESP_GAP_BLE_READ_RSSI_COMPLETE_EVT:
     	rssi_val = param->read_rssi_cmpl.rssi;
@@ -468,6 +481,9 @@ void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
     }
 }
 
+/* gatts_profile_event_handler
+ * Based on on the ESP32_ble_UART example of pcbreflux at github. It handles all GATT profile events such as register, create, read, write
+ * as well as characteristic/descriptor add and connection/disconnection.*/
 void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	esp_err_t ret;
 	switch (event) {
@@ -479,7 +495,6 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         for (uint8_t pos=0;pos<ESP_UUID_LEN_128;pos++) {
         	gl_profile.service_id.id.uuid.uuid.uuid128[pos]=ble_service_uuid128[pos];
         }
-
         esp_ble_gap_set_device_name(BLE_DEVICE_NAME);
         ret=esp_ble_gap_config_adv_data(&ble_adv_data);
         //ESP_LOGI(GATTS_TAG, "esp_ble_gap_config_adv_data %d", ret);
@@ -487,13 +502,14 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         esp_ble_gatts_create_service(gatts_if, &gl_profile.service_id, GATTS_NUM_HANDLE);
         break;
     case ESP_GATTS_READ_EVT: {
+    	//Read event occurs only when RND_PS is read, as it is the only characteristic with read property
+    	//When RND_PS is read, we keep the RSSI value in order to calculate proximity in the next step of CRYPTO_PS write
     	esp_ble_gap_read_rssi(param->read.bda);
     	printf("RND_PS read! Countdown of %d seconds begins\n\n",TIMEOUT_SEC);
     	flag_read = 1;
 
-    	// Create the task, storing the handle.
+    	//Create a "countdown" timer task to ensure that a RND_PS value will be accessible only for a specified time
     	xTaskCreate(vTimout, "Timeout", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xTimeout_Handle);
-
 
     	gatts_check_callback(event, gatts_if, param);
         break;
@@ -512,7 +528,6 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         gl_profile.service_handle = param->create.service_handle;
         gl_profile.char_uuid.len = gl_char[0].char_uuid.len;
         gl_profile.char_uuid.uuid.uuid16 = gl_char[0].char_uuid.uuid.uuid16;
-
         esp_ble_gatts_start_service(gl_profile.service_handle);
         gatts_add_char();
         break;
@@ -538,13 +553,14 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         break;
     case ESP_GATTS_CONNECT_EVT:
         gl_profile.conn_id = param->connect.conn_id;
-        //If client is connected proceed with generation of RND_PS and write to characteristic
+        //If client is connected, proceed with generation of RND_PS and write to characteristic
         if(param->connect.is_connected){
         	printf("\n[CLIENT CONNECTED]\n\n");
         	generate_store_RND_PS();
         }
         break;
     case ESP_GATTS_DISCONNECT_EVT:
+    	//If client is disconnected, start advertising again
     	printf("\n[CLIENT DISCONNECTED]\n\n");
         esp_ble_gap_start_advertising(&ble_adv_params);
         break;
@@ -558,6 +574,9 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
     }
 }
 
+/* gatts_event_handler
+ * Based on on the ESP32_ble_UART example of pcbreflux at github. Basically if a new register event is occurred,
+ * it stores the GATT interface. Otherwise, it calls the profile event handler to deal with any different event.*/
 void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
     /* If event is register event, store the gatts_if for each profile */
     if (event == ESP_GATTS_REG_EVT) {
@@ -586,6 +605,15 @@ void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
         	gpioConfig.intr_type    = GPIO_INTR_DISABLE;
         	gpio_config(&gpioConfig);
 
+        	//DOOR LOCK PIN CONFIG
+        	bitmask = bitmask | (1<<DOOR_LOCK_PIN);
+			gpioConfig.pin_bit_mask = bitmask;
+			gpioConfig.mode         = GPIO_MODE_OUTPUT;
+			gpioConfig.pull_up_en   = GPIO_PULLUP_DISABLE;
+			gpioConfig.pull_down_en = GPIO_PULLDOWN_ENABLE;
+			gpioConfig.intr_type    = GPIO_INTR_DISABLE;
+			gpio_config(&gpioConfig);
+
         } else {
             ESP_LOGI(GATTS_TAG, "Reg app failed, app_id %04x, status %d\n",
                     param->reg.app_id, 
@@ -597,27 +625,43 @@ void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     gatts_profile_event_handler(event, gatts_if, param);
 }
 
+/* lock_arm function
+ * It is used only during the system startup and it executes the necessary actions to safely arm the door lock.
+ * Currently, it only indicates the lock of the door by toggling the appropriate LEDs but later on it
+ * will be used to drive the pin that controls the electric door lock.*/
 void lock_arm(){
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
+	gpio_set_level(DOOR_LOCK_PIN,LOW); //Depends on the type of Door lock drive
 	printf("LOCK ARMED\n");
 }
 
+/* unlock function
+ * It executes the necessary actions in order to unlock the door.
+ * Currently, it only indicates the unlock of the door by toggling the appropriate
+ * LEDs but later on it will be used to drive the pin that controls the electric door lock.*/
 void unlock(){
 	//Unlock the door for a few seconds
 	gpio_set_level(RED_LED_PIN,LOW);
 	gpio_set_level(GREEN_LED_PIN,HIGH);
+	gpio_set_level(DOOR_LOCK_PIN,HIGH); //Depends on the type of Door lock drive
 	printf("DOOR UNLOCKED\n\n");
 
 	//lock again after a few seconds
 	vTaskDelay(5000 / portTICK_RATE_MS); // delay ??s
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
+	gpio_set_level(DOOR_LOCK_PIN,LOW); //Depends on the type of Door lock drive
 	printf("DOOR LOCKED\n\n");
 
 
 }
 
+/* generate_store_RND_PS function
+ * It is called when a new Random Password needed to be created.
+ * Using the register of the Random Number Generator of ESP32, it creates 4x32bit random
+ * numbers which later merges in one 128bit random number. Finally it stores the freshly generated
+ * RND_PS to the 2nd characteristic (TX) for the client to be able to read.*/
 void generate_store_RND_PS(){
 	uint32_t RND_PS_temp[4];
 
@@ -634,22 +678,22 @@ void generate_store_RND_PS(){
 	//write RND_PS to the char2
 	for (int i=0;i<4;i++){
 		RND_PS[i] = ((RND_PS_temp[0] >> 8*i) & 0x000000FF);
-		gatts_demo_char2_val.attr_value[i] = RND_PS[i];
+		char2_val.attr_value[i] = RND_PS[i];
 	}
 	for (int i=0;i<4;i++){
 		RND_PS[4+i] = ((RND_PS_temp[1] >> 8*i) & 0x000000FF);
-		gatts_demo_char2_val.attr_value[4+i] = RND_PS[4+i];
+		char2_val.attr_value[4+i] = RND_PS[4+i];
 	}
 	for (int i=0;i<4;i++){
 		RND_PS[8+i] = ((RND_PS_temp[2] >> 8*i) & 0x000000FF);
-		gatts_demo_char2_val.attr_value[8+i] = RND_PS[8+i];
+		char2_val.attr_value[8+i] = RND_PS[8+i];
 	}
 	for (int i=0;i<4;i++){
 		RND_PS[12+i] = ((RND_PS_temp[3] >> 8*i) & 0x000000FF);
-		gatts_demo_char2_val.attr_value[12+i] = RND_PS[12+i];
+		char2_val.attr_value[12+i] = RND_PS[12+i];
 	}
-	gatts_demo_char2_val.attr_len = 16;
-	gl_char[1].char_val = &gatts_demo_char2_val;
+	char2_val.attr_len = 16;
+	gl_char[1].char_val = &char2_val;
 
 	flag_read = 0;
 
@@ -660,21 +704,27 @@ void generate_store_RND_PS(){
 	printf(" in hex\n\n");
 }
 
+/* ble_init function
+ * It is the "default" BLE initialization and setup, based on the ESP32_ble_UART example
+ * of pcbreflux at github. Basically:
+ * -Initializes the NVS flash memory
+ * -Initialize and enable the BT controller
+ * -Initialize and enable the Bluedroid module
+ * -Registers the callback functions for both GAP and GATT as well as the GATT app
+ * */
 void ble_init(){
 	esp_err_t ret;
     ret = nvs_flash_init();
-        if (ret) {
-            ESP_LOGE(GATTS_TAG, "%s nvs flash init failed\n", __func__);
-            return;
-        }
-
+    if (ret) {
+    	ESP_LOGE(GATTS_TAG, "%s nvs flash init failed\n", __func__);
+    	return;
+    }
     esp_bt_controller_config_t bt_cfg = BT_CONTROLLER_INIT_CONFIG_DEFAULT();
     ret = esp_bt_controller_init(&bt_cfg);
     if (ret) {
         ESP_LOGE(GATTS_TAG, "%s initialize controller failed\n", __func__);
         return;
     }
-
     ret = esp_bt_controller_enable(ESP_BT_MODE_BTDM);
     if (ret) {
         ESP_LOGE(GATTS_TAG, "%s enable controller failed\n", __func__);
@@ -696,14 +746,17 @@ void ble_init(){
     esp_ble_gatts_app_register(BLE_PROFILE_APP_ID);
 }
 
+
+/* vTimout function
+ * Is called during the creation of a task, just after RND_PS characteristic is read from the client.
+ * The purpose is to start a "timer" task that keeps a countdown timer until a user specified threshold of
+ * TIMEOUT_SEC seconds is reached. At that moment, the ongoing attempt to unlock is considered unsuccessful
+ * and a new RND_PS is generated.*/
 void vTimout( void *pvParameters ){
-	/* Block for 5sec (5000ms) */
+	/* Block for TIMEOUT_SEC seconds (*1000ms) */
 	const TickType_t xDelay = (TIMEOUT_SEC *1000) / portTICK_PERIOD_MS;
 	vTaskDelay(xDelay);
-
 	printf("TIMEOUT REACHED! Generating new RND_PS\n\n");
 	generate_store_RND_PS();
-
 	vTaskDelete( NULL );
-//	xTimeout_Handle = NULL;
 }

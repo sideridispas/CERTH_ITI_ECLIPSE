@@ -8,6 +8,8 @@
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ROOM"/>
+			<item value="room"/>
 			<item value="GIVE ADV NAME"/>
 			<item value="esp_ble_gap_read_rssi"/>
 			<item value="heyy"/>
@@ -21,8 +23,6 @@
 			<item value="gatts_event_handler"/>
 			<item value="gl_profile_tab[PROFILE_A_APP_ID]"/>
 			<item value="gatts_profile_inst"/>
-			<item value="a_property"/>
-			<item value="property"/>
 		</list>
 		<list key="replacehistory">
 			<item value="descr2_val"/>
