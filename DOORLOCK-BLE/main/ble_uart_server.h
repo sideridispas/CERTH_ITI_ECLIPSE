@@ -52,9 +52,9 @@ void lock_arm();
 void unlock();
 void generate_store_RND_PS();
 void ble_init();
-
 void vTimout(void *pvParameters);
-
+void vBlinking(void *pvParameters);
+void vErrorLED(void *pvParameters);
 
 #ifdef __cplusplus
 }

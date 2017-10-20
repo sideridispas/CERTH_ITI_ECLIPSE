@@ -97,6 +97,12 @@ esp_aes_context  aes_ctx = {
 //Task handle for timeout task
 TaskHandle_t xTimeout_Handle = NULL;
 
+//Task handle for blinking LED task in advertising mode
+TaskHandle_t xBlinking_Handle = NULL;
+
+//Task handle for blinking LED task as error indication during connection
+TaskHandle_t xErrorLED_Handle = NULL;
+
 //flag to know if RND_PS is read
 int flag_read = 0;
 
@@ -333,6 +339,8 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOUT\n======================\n\n");
 				unsucc_times++;
 				generate_store_RND_PS();
+				//Create a blink LED error indication
+				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 			}
 		}else if((same == 0) && (abs(rssi_val) < RSSI_IN_RANGE)){
 			if(unsucc_times == 2){
@@ -343,12 +351,18 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 				printf("======================\nTRY AGAIN\nPassword:\tWRONG\nRange:  \tOK\n======================\n\n");
 				unsucc_times++;
 				generate_store_RND_PS();
+				//Create a blink LED error indication
+				xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 			}
 		}else if((same == 1) && (abs(rssi_val) > RSSI_IN_RANGE)){
 			printf("======================\nTRY AGAIN\nPassword:\tOK\nRange:  \tOUT\n======================\n\n");
+			//Create a blink LED error indication
+			xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 		}
     }else{
     	printf("ERROR: Please read RND_PS first!\n\n");
+    	//Create a blink LED error indication
+		xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
     }
 }
 
@@ -471,6 +485,10 @@ void gap_event_handler(esp_gap_ble_cb_event_t event, esp_ble_gap_cb_param_t *par
 //    	printf("==ESP_BLE_PWR_TYPE_ADV: %d\n",esp_ble_tx_power_get(ESP_BLE_PWR_TYPE_ADV));
     	ret = esp_ble_tx_power_set(ESP_BLE_PWR_TYPE_ADV, ESP_PWR_LVL_N14);
 //    	printf("==ESP_BLE_PWR_TYPE_ADV: %d\n",esp_ble_tx_power_get(ESP_BLE_PWR_TYPE_ADV));
+
+    	//Create a blinking task to indicate advertising correctly mode
+		xTaskCreate(vBlinking, "Blinking", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xBlinking_Handle);
+
     	ret = esp_ble_gap_start_advertising(&ble_adv_params);
         break;
     case ESP_GAP_BLE_READ_RSSI_COMPLETE_EVT:
@@ -556,12 +574,15 @@ void gatts_profile_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts
         //If client is connected, proceed with generation of RND_PS and write to characteristic
         if(param->connect.is_connected){
         	printf("\n[CLIENT CONNECTED]\n\n");
+        	vTaskSuspend(xBlinking_Handle);
+        	gpio_set_level(RED_LED_PIN,HIGH);
         	generate_store_RND_PS();
         }
         break;
     case ESP_GATTS_DISCONNECT_EVT:
     	//If client is disconnected, start advertising again
     	printf("\n[CLIENT DISCONNECTED]\n\n");
+    	vTaskResume(xBlinking_Handle);
         esp_ble_gap_start_advertising(&ble_adv_params);
         break;
     case ESP_GATTS_OPEN_EVT:
@@ -752,11 +773,38 @@ void ble_init(){
  * The purpose is to start a "timer" task that keeps a countdown timer until a user specified threshold of
  * TIMEOUT_SEC seconds is reached. At that moment, the ongoing attempt to unlock is considered unsuccessful
  * and a new RND_PS is generated.*/
-void vTimout( void *pvParameters ){
+void vTimout(void *pvParameters){
 	/* Block for TIMEOUT_SEC seconds (*1000ms) */
 	const TickType_t xDelay = (TIMEOUT_SEC *1000) / portTICK_PERIOD_MS;
 	vTaskDelay(xDelay);
 	printf("TIMEOUT REACHED! Generating new RND_PS\n\n");
+	xTaskCreate(vErrorLED, "ErrorLED", STACK_SIZE, NULL, tskIDLE_PRIORITY, &xErrorLED_Handle);
 	generate_store_RND_PS();
-	vTaskDelete( NULL );
+	vTaskDelete(NULL);
+}
+
+void vBlinking(void *pvParameters){
+	while(1){
+		//Blink red led every 2 seconds
+		const TickType_t xOFF = 3000 / portTICK_PERIOD_MS;
+		const TickType_t xON = 50 / portTICK_PERIOD_MS;
+		vTaskDelay(xOFF);
+		gpio_set_level(RED_LED_PIN,HIGH);
+		vTaskDelay(xON);
+		gpio_set_level(RED_LED_PIN,LOW);
+	}
+}
+
+void vErrorLED(void *pvParameters){
+	//Blink red led 2 times
+	const TickType_t xOFF = 150 / portTICK_PERIOD_MS;
+	const TickType_t xON = 150 / portTICK_PERIOD_MS;
+	gpio_set_level(RED_LED_PIN,LOW);
+	vTaskDelay(xOFF);
+	gpio_set_level(RED_LED_PIN,HIGH);
+	vTaskDelay(xON);
+	gpio_set_level(RED_LED_PIN,LOW);
+	vTaskDelay(xOFF);
+	gpio_set_level(RED_LED_PIN,HIGH);
+	vTaskDelete(NULL);
 }
