@@ -54,6 +54,8 @@ void vTimout(void *pvParameters);
 void vBlinking(void *pvParameters);
 void vErrorLED(void *pvParameters);
 
+void printHex16(char* text, unsigned char* hex_var);
+
 #ifdef __cplusplus
 }
 #endif

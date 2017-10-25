@@ -66,6 +66,9 @@
 //Number of unsuccessful attempts to unlock before disconnection of client
 #define UNSUCC_ATTEMPTS 3
 
+//Door Secret Key
+#define DOOR_SECRET_KEY "hereHaveTheKeyThatKeepsTheSecret"
+
 /*********************************************************************************************/
 
 #define GATTS_TAG "GATTS"
@@ -94,7 +97,7 @@ uint8_t RND_PS[16];
 //AES structure used for decode
 esp_aes_context  aes_ctx = {
 	.key_bytes = 32,
-	.key = "hereHaveTheKeyThatKeepsTheSecret",
+	.key = DOOR_SECRET_KEY,
 };
 
 //Task handle for timeout task
@@ -106,7 +109,7 @@ TaskHandle_t xBlinking_Handle = NULL;
 //Task handle for blinking LED task as error indication during connection
 TaskHandle_t xErrorLED_Handle = NULL;
 
-//Address of the connected device 				/**********************************************/
+//Address of the connected device
 esp_bd_addr_t address_pass;
 
 //flag to know if RND_PS is read
@@ -209,8 +212,8 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				// ---CRYPTO_PS--- (old RX)
 				.char_uuid.len = ESP_UUID_LEN_128,
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x02, 0x00, 0x40, 0x6E },
-				.char_perm = ESP_GATT_PERM_WRITE, //old: ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
-				.char_property = ESP_GATT_CHAR_PROP_BIT_WRITE,//ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
+				.char_perm = ESP_GATT_PERM_WRITE,
+				.char_property = ESP_GATT_CHAR_PROP_BIT_WRITE,
 				.char_val = &char1_val,
 				.char_control = NULL,
 				.char_handle = 0,
@@ -220,8 +223,8 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 				// ---RND_PS--- (old TX)
 				.char_uuid.len = ESP_UUID_LEN_128,
 				.char_uuid.uuid.uuid128 =  { 0x9E, 0xCA, 0xDC, 0x24, 0x0E, 0xE5, 0xA9, 0xE0, 0x93, 0xF3, 0xA3, 0xB5, 0x03, 0x00, 0x40, 0x6E },
-				.char_perm = ESP_GATT_PERM_READ, //old: ESP_GATT_PERM_READ | ESP_GATT_PERM_WRITE,
-				.char_property = ESP_GATT_CHAR_PROP_BIT_READ,//ESP_GATT_CHAR_PROP_BIT_READ | ESP_GATT_CHAR_PROP_BIT_WRITE | ESP_GATT_CHAR_PROP_BIT_NOTIFY,
+				.char_perm = ESP_GATT_PERM_READ,
+				.char_property = ESP_GATT_CHAR_PROP_BIT_READ,
 				.char_val = &char2_val,
 				.char_control=NULL,
 				.char_handle=0,
@@ -229,7 +232,8 @@ static struct gatts_char_inst gl_char[GATTS_CHAR_NUM] = {
 		}
 };
 
-
+/* char2_read_handler
+ * The callback function in the read event of characteristic 2 */
 void char2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	//ESP_LOGI(GATTS_TAG, "char2_read_handler %d\n", param->read.handle);
 
@@ -248,7 +252,9 @@ void char2_read_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_
 								ESP_GATT_OK, &rsp);
 }
 
-
+/* char1_write_handler
+ * The callback function in the write event of characteristic 1.
+ * It is important part of code because here we cary out all the check for password (and decryption) as well as proximity */
 void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	//ESP_LOGI(GATTS_TAG, "char1_write_handler %d\n", param->write.handle);
 
@@ -263,50 +269,47 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 
     esp_ble_gatts_send_response(gatts_if, param->write.conn_id, param->write.trans_id, ESP_GATT_OK, NULL);
 
-//***** MY CODE BELOW *****
-
+    //Check for RND_PS read is mandatory because we get the RSSI value during read
     if (flag_read == 1){
+
+    	//variable to store the input of CRYPTO_PS and the decrypted output of AES
+		unsigned char input[16];
+		unsigned char f_output[16];
+		unsigned char temp_key[16]= {0x33,0x91,0x3C,0x16,0x7A,0x97,0xCF,0x0E,0x16,0x44,0x33,0x89,0xB0,0x93,0xF7,0x65};
+
     	//If write CRYPTO_PS response is on time (xTimeout_Handle != NULL) it will delete the timeout task
 		if(xTimeout_Handle != NULL)
 		{
-			//printf("Prior of task deletion\n");
 			vTaskDelete(xTimeout_Handle);
-			//printf("Timeout task deleted!\n");
 		}
 
-		unsigned char input[16];
-		unsigned char f_output[16];
-
-
+		//Store the input in the appropriate variable
 		for(int i=0;i<16;i++){
 			input[i] = gl_char[0].char_val->attr_value[i];
 		}
 
-
-//		printf("received input:");
-//		for(int i=0;i<16;i++){
-//			printf("%02X",input[i]);
-//		}
-//		printf(" in hex\n\n");
-//
-//
-//		printf("DECODING IN AES\n\n");
+		printHex16("received input:",input);
+		printf("DECODING IN AES\n\n");
 
 		esp_aes_decrypt(&aes_ctx,input, f_output);
 
-		printf("Decoded RND_PS: ");
-		for(int i=0;i<16;i++){
-			printf("%02X",f_output[i]);
-		}
-		printf(" in hex\n\n");
+		printHex16("Decoded RND_PS:",f_output);
 
-
-		//password check here
+		//Temp key check here (temp key is FF)
 		int same = 1; //flag variable
 		for(int i=0;i<16;i++){
-			if(RND_PS[i] != f_output[i]){
-				//printf("WRONG!!\n");
+			if(temp_key[i] != f_output[i]){
 				same = 0;
+			}
+		}
+
+		//Not match with temp key
+		if (same == 0){
+			same = 1;
+			for(int i=0;i<16;i++){
+				if(RND_PS[i] != f_output[i]){
+					same = 0;
+				}
 			}
 		}
 
@@ -363,6 +366,8 @@ void char1_write_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
     }
 }
 
+/* gatts_add_char
+ * GATT function to add characteristic without checking. Usually it is called by the gatts_check_add_char() */
 void gatts_add_char() {
 
 	//ESP_LOGI(GATTS_TAG, "gatts_add_char %d\n", GATTS_CHAR_NUM);
@@ -377,6 +382,8 @@ void gatts_add_char() {
 	}
 }
 
+/* gatts_check_add_char
+ * Simple GATT function to check and add a characteristic to a service (also a descriptor) */
 void gatts_check_add_char(esp_bt_uuid_t char_uuid, uint16_t attr_handle) {
 
 	//ESP_LOGI(GATTS_TAG, "gatts_check_add_char %d\n", attr_handle);
@@ -396,7 +403,8 @@ void gatts_check_add_char(esp_bt_uuid_t char_uuid, uint16_t attr_handle) {
 }
 
 
-
+/* gatts_check_add_descr
+ * Simple GATT function to add a descriptor to a characteristic */
 void gatts_check_add_descr(esp_bt_uuid_t descr_uuid, uint16_t attr_handle) {
 
 	//ESP_LOGI(GATTS_TAG, "gatts_check_add_descr %d\n", attr_handle);
@@ -407,6 +415,9 @@ void gatts_check_add_descr(esp_bt_uuid_t descr_uuid, uint16_t attr_handle) {
 	gatts_add_char();
 }
 
+/* gatts_check_callback
+ * Based on on the ESP32_ble_UART example of pcbreflux at github. It handles the write and read events.
+ * More specific, it defines the appropriate handles and calls the appropriate callback functions */
 void gatts_check_callback(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp_ble_gatts_cb_param_t *param) {
 	uint16_t handle=0;
 	uint8_t read=1;
@@ -591,7 +602,7 @@ void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
         if (param->reg.status == ESP_GATT_OK) {
         	gl_profile.gatts_if = gatts_if;
 
-        	//ONBOARD LED CONFIG
+        	//GPIO CONFIGURATION
         	uint64_t bitmask = 0;
         	gpio_config_t gpioConfig;
 
@@ -640,7 +651,7 @@ void gatts_event_handler(esp_gatts_cb_event_t event, esp_gatt_if_t gatts_if, esp
 void lock_arm(){
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
-	gpio_set_level(DOOR_LOCK_PIN,LOW); //Depends on the type of Door lock drive
+	gpio_set_level(DOOR_LOCK_PIN,HIGH); //Depends on the type of Door lock drive
 	printf("LOCK ARMED\n");
 }
 
@@ -652,14 +663,14 @@ void unlock(){
 	//Unlock the door for a few seconds
 	gpio_set_level(RED_LED_PIN,LOW);
 	gpio_set_level(GREEN_LED_PIN,HIGH);
-	gpio_set_level(DOOR_LOCK_PIN,HIGH); //Depends on the type of Door lock drive
+	gpio_set_level(DOOR_LOCK_PIN,LOW); //Depends on the type of Door lock drive
 	printf("DOOR UNLOCKED\n\n");
 
 	//lock again after a few seconds
 	vTaskDelay(5000 / portTICK_RATE_MS); // delay ??s
 	gpio_set_level(RED_LED_PIN,HIGH);
 	gpio_set_level(GREEN_LED_PIN,LOW);
-	gpio_set_level(DOOR_LOCK_PIN,LOW); //Depends on the type of Door lock drive
+	gpio_set_level(DOOR_LOCK_PIN,HIGH); //Depends on the type of Door lock drive
 	printf("DOOR LOCKED\n\n");
 
 
@@ -671,6 +682,7 @@ void unlock(){
  * numbers which later merges in one 128bit random number. Finally it stores the freshly generated
  * RND_PS to the 2nd characteristic (TX) for the client to be able to read.*/
 void generate_store_RND_PS(){
+	//Temporary variable to store the 4x32bit parts of the 16byte (128bits) RND_PS
 	uint32_t RND_PS_temp[4];
 
 	//create the Random Password RND_PS
@@ -679,9 +691,6 @@ void generate_store_RND_PS(){
 	RND_PS_temp[2] = READ_PERI_REG(DR_REG_RNG_BASE);
 	RND_PS_temp[3] = READ_PERI_REG(DR_REG_RNG_BASE);
 
-//	for (int i=0;i<4;i++){
-//		printf("RND_PS[%d] = %02X\n",i, RND_PS_temp[i]);
-//	}
 
 	//write RND_PS to the char2
 	for (int i=0;i<4;i++){
@@ -703,13 +712,10 @@ void generate_store_RND_PS(){
 	char2_val.attr_len = 16;
 	gl_char[1].char_val = &char2_val;
 
+	//Clear the read flag as the RND_PS just got created
 	flag_read = 0;
 
-	printf("RND_PS: ");
-	for(int i=0;i<16;i++){
-		printf("%02X",RND_PS[i]);
-	}
-	printf(" in hex\n\n");
+	printHex16("RND_PS: ",RND_PS);
 }
 
 /* ble_init function
@@ -810,4 +816,14 @@ void vErrorLED(void *pvParameters){
 	vTaskDelay(xOFF);
 	gpio_set_level(RED_LED_PIN,HIGH);
 	vTaskDelete(NULL);
+}
+
+/* printHex16 function
+ * Just prints in an easy to read hex format the 16bytes variables */
+void printHex16(char* text, unsigned char* hex_var){
+	printf("%.*s ", strlen(text), text);
+	for(int i=0;i<16;i++){
+		printf("%02X",hex_var[i]);
+	}
+	printf(" [hex]\n\n");
 }

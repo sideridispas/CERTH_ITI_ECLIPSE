@@ -1,0 +1,302 @@
+13:11:58 **** Build of configuration Default for project gatt_client ****
+python C:/msys32/home/sideridis/esp/esp-idf/tools/windows/eclipse_make.py flash -j8 
+Running make in 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client'
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/coap/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/esp32/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/partition_table/Makefile.projbuild...
+including C:/msys32/home/sideridis/esp/esp-idf/components/ulp/Makefile.projbuild...
+PROJECT_PATH= COMPONENT_DIRS= make -C C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject V=1 BUILD_DIR_BASE=C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader TEST_COMPONENTS= TESTS_ALL= C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/bootloader.bin
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_trace -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/app_trace/component.mk COMPONENT_NAME=app_trace build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_update -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/app_update/component.mk COMPONENT_NAME=app_update build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/aws_iot -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/aws_iot/component.mk COMPONENT_NAME=aws_iot build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bt -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bt/component.mk COMPONENT_NAME=bt build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/coap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/coap/component.mk COMPONENT_NAME=coap build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_trace'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_trace'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_update'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_update'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/console -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/console/component.mk COMPONENT_NAME=console build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/aws_iot'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/aws_iot'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/cxx -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/cxx/component.mk COMPONENT_NAME=cxx build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/driver -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/driver/component.mk COMPONENT_NAME=driver build
+make[1]: Entering directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp32 -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp32/component.mk COMPONENT_NAME=esp32 build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader_support'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader_support'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp_adc_cal -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/esp_adc_cal/component.mk COMPONENT_NAME=esp_adc_cal build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/coap'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/coap'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/console'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/console'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ethernet -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ethernet/component.mk COMPONENT_NAME=ethernet build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/cxx'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/cxx'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/expat -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/expat/component.mk COMPONENT_NAME=expat build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/driver'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp_adc_cal'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp32'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ethernet'
+make[1]: Nothing to be done for 'build'.
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp32'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/driver'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp_adc_cal'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bt'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bt'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/fatfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/fatfs/component.mk COMPONENT_NAME=fatfs build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/expat'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/expat'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ethernet'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/freertos -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/freertos/component.mk COMPONENT_NAME=freertos build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/fatfs'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/fatfs'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/heap -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/heap/component.mk COMPONENT_NAME=heap build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/freertos'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/freertos'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/heap'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/heap'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/jsmn -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/jsmn/component.mk COMPONENT_NAME=jsmn build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/json -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/json/component.mk COMPONENT_NAME=json build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/libsodium -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/libsodium/component.mk COMPONENT_NAME=libsodium build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/jsmn'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/json'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/json'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/jsmn'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/lwip -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/lwip/component.mk COMPONENT_NAME=lwip build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/BLE-DoorLock/workspace/gatt_client/main/component.mk COMPONENT_NAME=main build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/log'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/log'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mbedtls -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mbedtls/component.mk COMPONENT_NAME=mbedtls build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/libsodium'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/libsodium'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mdns -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/mdns/component.mk COMPONENT_NAME=mdns build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/main'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/main'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/lwip'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mdns'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mdns'
+make[1]: Nothing to be done for 'build'.
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/newlib -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/newlib/component.mk COMPONENT_NAME=newlib build
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/lwip'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/micro-ecc'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mbedtls'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nghttp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nghttp/component.mk COMPONENT_NAME=nghttp build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/newlib'
+including /home/sideridis/esp/esp-idf/components/esptool_py/Makefile.projbuild...make[1]: Nothing to be done for 'build'.
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/micro-ecc'
+
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mbedtls'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/newlib'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nvs_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/nvs_flash/component.mk COMPONENT_NAME=nvs_flash build
+including /home/sideridis/esp/esp-idf/components/bootloader_support/Makefile.projbuild...make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nghttp'
+make[1]: Nothing to be done for 'build'.
+
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nghttp'
+including C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/Makefile.projbuild...
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/openssl -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/openssl/component.mk COMPONENT_NAME=openssl build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nvs_flash'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nvs_flash'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/pthread -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/pthread/component.mk COMPONENT_NAME=pthread build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/openssl'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/openssl'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/sdmmc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/sdmmc/component.mk COMPONENT_NAME=sdmmc build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/pthread'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/pthread'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/soc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/soc/component.mk COMPONENT_NAME=soc build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/sdmmc'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/sdmmc'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/soc'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/soc'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spiffs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spiffs/component.mk COMPONENT_NAME=spiffs build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/tcpip_adapter -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/tcpip_adapter/component.mk COMPONENT_NAME=tcpip_adapter build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/bootloader_support -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader_support/component.mk COMPONENT_NAME=bootloader_support build
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spi_flash'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spiffs'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ulp -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/ulp/component.mk COMPONENT_NAME=ulp build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/log -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/log/component.mk COMPONENT_NAME=log build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/bootloader_support'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/bootloader_support'
+make[1]: Nothing to be done for 'build'.
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/tcpip_adapter'
+make[1]: Nothing to be done for 'build'.
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/vfs -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/vfs/component.mk COMPONENT_NAME=vfs build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/spi_flash -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/spi_flash/component.mk COMPONENT_NAME=spi_flash build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/log'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ulp'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spiffs'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spi_flash'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/vfs'
+make[1]: Nothing to be done for 'build'.
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ulp'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/micro-ecc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/micro-ecc/component.mk COMPONENT_NAME=micro-ecc build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wear_levelling -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wear_levelling/component.mk COMPONENT_NAME=wear_levelling build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/spi_flash'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/spi_flash'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/vfs'
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wpa_supplicant -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/wpa_supplicant/component.mk COMPONENT_NAME=wpa_supplicant build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/soc -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/soc/component.mk COMPONENT_NAME=soc build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/micro-ecc'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/micro-ecc'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/tcpip_adapter'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wear_levelling'
+make[2]: Nothing to be done for 'build'.
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/xtensa-debug-module -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/xtensa-debug-module/component.mk COMPONENT_NAME=xtensa-debug-module build
+make -C C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/main -f C:/msys32/home/sideridis/esp/esp-idf/make/component_wrapper.mk COMPONENT_MAKEFILE=C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject/main/component.mk COMPONENT_NAME=main build
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/soc'
+make[2]: Nothing to be done for 'build'.
+make[1]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/log'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wpa_supplicant'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wpa_supplicant'
+make[2]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/main'
+make[2]: Nothing to be done for 'build'.
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/soc'
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wear_levelling'
+make[2]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/main'
+make[1]: Entering directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/xtensa-debug-module'
+Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/bootloader_support/libbootloader_support.a'
+Target 'component-app_trace-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_trace/libapp_trace.a'
+Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/spi_flash/libspi_flash.a'
+Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/micro-ecc/libmicro-ecc.a'
+Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/soc/libsoc.a'
+Target 'component-app_update-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/app_update/libapp_update.a'
+Target 'component-aws_iot-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/aws_iot/libaws_iot.a'
+make[1]: Nothing to be done for 'build'.
+make[1]: Leaving directory 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/xtensa-debug-module'
+Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/main/libmain.a'
+Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/log/liblog.a'
+Target 'component-bootloader_support-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader_support/libbootloader_support.a'
+Target 'component-bt-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bt/libbt.a'
+make[1]: Leaving directory 'C:/msys32/home/sideridis/esp/esp-idf/components/bootloader/subproject'
+Target 'component-coap-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/coap/libcoap.a'
+Target 'component-console-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/console/libconsole.a'
+Target 'component-cxx-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/cxx/libcxx.a'
+Target 'component-driver-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/driver/libdriver.a'
+Target 'component-esp32-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp32/libesp32.a'
+Target 'component-esp_adc_cal-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/esp_adc_cal/libesp_adc_cal.a'
+Target 'component-expat-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/expat/libexpat.a'
+Target 'component-ethernet-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ethernet/libethernet.a'
+Target 'component-fatfs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/fatfs/libfatfs.a'
+Target 'component-freertos-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/freertos/libfreertos.a'
+Target 'component-heap-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/heap/libheap.a'
+Target 'component-jsmn-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/jsmn/libjsmn.a'
+Target 'component-libsodium-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/libsodium/liblibsodium.a'
+Target 'component-json-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/json/libjson.a'
+Target 'component-log-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/log/liblog.a'
+Target 'component-lwip-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/lwip/liblwip.a'
+Target 'component-main-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/main/libmain.a'
+Target 'component-mbedtls-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mbedtls/libmbedtls.a'
+Target 'component-mdns-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/mdns/libmdns.a'
+Target 'component-micro-ecc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/micro-ecc/libmicro-ecc.a'
+Target 'component-newlib-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/newlib/libnewlib.a'
+Target 'component-nghttp-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nghttp/libnghttp.a'
+Target 'component-nvs_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/nvs_flash/libnvs_flash.a'
+Target 'component-openssl-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/openssl/libopenssl.a'
+Target 'component-pthread-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/pthread/libpthread.a'
+Target 'component-soc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/soc/libsoc.a'
+Target 'component-sdmmc-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/sdmmc/libsdmmc.a'
+Target 'component-spi_flash-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spi_flash/libspi_flash.a'
+Target 'component-spiffs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/spiffs/libspiffs.a'
+Target 'component-tcpip_adapter-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/tcpip_adapter/libtcpip_adapter.a'
+Target 'component-ulp-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/ulp/libulp.a'
+Target 'component-vfs-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/vfs/libvfs.a'
+Target 'component-wear_levelling-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wear_levelling/libwear_levelling.a'
+Target 'component-wpa_supplicant-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/wpa_supplicant/libwpa_supplicant.a'
+Target 'component-xtensa-debug-module-build' responsible for 'C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/xtensa-debug-module/libxtensa-debug-module.a'
+Flashing binaries to serial port COM3 (app at offset 0x10000)...
+python C:/msys32/home/sideridis/esp/esp-idf/components/esptool_py/esptool/esptool.py --chip esp32 --port "COM3" --baud 115200 --before "default_reset" --after "hard_reset" write_flash -z --flash_mode "dio" --flash_freq "40m" --flash_size detect 0x1000 C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/bootloader/bootloader.bin 0x10000 C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/gatt_client_demo.bin 0x8000 C:/msys32/home/BLE-DoorLock/workspace/gatt_client/build/partitions_singleapp.bin
+esptool.py v2.1
+Connecting....
+Chip is ESP32D0WDQ6 (revision 1)
+Uploading stub...
+Running stub...
+Stub running...
+Configuring flash size...
+Auto-detected Flash size: 4MB
+Flash params set to 0x0220
+Compressed 18160 bytes to 10739...
+
+Writing at 0x00001000... (100 %)
+Wrote 18160 bytes (10739 compressed) at 0x00001000 in 0.9 seconds (effective 153.3 kbit/s)...
+Hash of data verified.
+Compressed 688336 bytes to 372494...
+
+Writing at 0x00010000... (4 %)
+Writing at 0x00014000... (8 %)
+Writing at 0x00018000... (13 %)
+Writing at 0x0001c000... (17 %)
+Writing at 0x00020000... (21 %)
+Writing at 0x00024000... (26 %)
+Writing at 0x00028000... (30 %)
+Writing at 0x0002c000... (34 %)
+Writing at 0x00030000... (39 %)
+Writing at 0x00034000... (43 %)
+Writing at 0x00038000... (47 %)
+Writing at 0x0003c000... (52 %)
+Writing at 0x00040000... (56 %)
+Writing at 0x00044000... (60 %)
+Writing at 0x00048000... (65 %)
+Writing at 0x0004c000... (69 %)
+Writing at 0x00050000... (73 %)
+Writing at 0x00054000... (78 %)
+Writing at 0x00058000... (82 %)
+Writing at 0x0005c000... (86 %)
+Writing at 0x00060000... (91 %)
+Writing at 0x00064000... (95 %)
+Writing at 0x00068000... (100 %)
+Wrote 688336 bytes (372494 compressed) at 0x00010000 in 32.8 seconds (effective 168.1 kbit/s)...
+Hash of data verified.
+Compressed 3072 bytes to 82...
+
+Writing at 0x00008000... (100 %)
+Wrote 3072 bytes (82 compressed) at 0x00008000 in 0.0 seconds (effective 1953.4 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting...
+
+13:12:41 Build Finished (took 43s.128ms)
+
