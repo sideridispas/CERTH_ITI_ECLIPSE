@@ -56,9 +56,11 @@
 #include "driver/timer.h"
 
 /********************************* USER DEFINED PARAMETERS ***********************************/
+//Device Name
+#define BLE_DEVICE_NAME "Room 2.23"
 
 //Time threshold in seconds, from moment of RND_PS read until considered unsuccessful attempt
-#define TIMEOUT_SEC 5 //seconds
+#define TIMEOUT_SEC 6 //seconds
 
 //RSSI threshold value for the proximity
 #define RSSI_IN_RANGE 60 //dBm

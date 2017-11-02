@@ -32,7 +32,7 @@ extern "C" {
 #define GATTS_CHAR_NUM		2
 #define GATTS_NUM_HANDLE     1+(3*GATTS_CHAR_NUM)
 
-#define BLE_DEVICE_NAME            "Room 2.23"
+
 #define BLE_MANUFACTURER_DATA_LEN  2
 
 #define GATTS_CHAR_VAL_LEN_MAX		16
